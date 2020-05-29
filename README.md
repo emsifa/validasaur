@@ -10,7 +10,7 @@ For example, let's write our `example.ts` like this:
 
 ```ts
 import { validate } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/mod.ts";
-import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/sr/src/rules.ts";
+import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/rules.ts";
 
 const inputs = {
   name: "",
@@ -56,7 +56,7 @@ For example:
 
 ```ts
 import { validate, flattenMessages, firstMessages } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/mod.ts";
-import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/sr/src/rules.ts";
+import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/rules.ts";
 
 const inputs = {
   name: "",
