@@ -49,7 +49,7 @@ And this is the result:
 
 #### Formatting Errors
 
-If you want a simpler error messages,
+If you want a simpler error message,
 you can use `flattenMessages` or `firstMessages` to format error messages.
 
 For example:
@@ -71,7 +71,7 @@ const [ passes, errors ] = await validate(inputs, {
 const firstErrors = firstMessages(errors);
 const flattenErrors = flattenMessages(errors);
 
-// Show the differents
+// Show the difference
 console.log({
   defaultErrors: errors,
   firstErrors,
