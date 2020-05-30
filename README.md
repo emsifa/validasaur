@@ -1,5 +1,7 @@
 ![Validasaur](https://raw.githubusercontent.com/emsifa/validasaur/master/validasaur.svg)
 
+![CI](https://github.com/emsifa/validasaur/workflows/ci/badge.svg)
+
 Validasaur is Deno validation library slightly inspired by Laravel Validation.
 
 ## Examples
