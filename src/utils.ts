@@ -102,19 +102,20 @@ export const resolveMessages = (
     const attr = (attributes || {})[key] || key;
     errorMessages[key] = {} as { [k: string]: string };
     for (let err of errs) {
+      const ruleKey = err.rule.replace(/\:\w+$/, '');
       if (err.rule === "validateObject" && err.params.errors) {
-        errorMessages[key][err.rule] = resolveMessages(
+        errorMessages[key][ruleKey] = resolveMessages(
           err.params.errors,
           { messages, attributes },
         );
       } else if (err.rule === "validateArray" && err.params.errors) {
-        errorMessages[key][err.rule] = resolveMessages(
+        errorMessages[key][ruleKey] = resolveMessages(
           err.params.errors,
           { messages, attributes },
         );
       } else {
         const msg = (messages || {})[err.rule] || defaultMessage;
-        errorMessages[key][err.rule] = resolveErrorMessage(
+        errorMessages[key][ruleKey] = resolveErrorMessage(
           msg,
           err.params,
           attr,
