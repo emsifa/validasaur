@@ -3,7 +3,21 @@ name: ci
 on: [push, pull_request]
 
 jobs:
-  accepts:
+  fmt:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denolib/setup-deno@master
+        with:
+          deno-version: 1.0.0
+
+      - run: deno --version
+      - run: deno fmt --check
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -16,5 +30,4 @@ jobs:
           deno-version: 1.0.0
 
       - run: deno --version
-      - run: deno fmt --check
       - run: deno test -A
