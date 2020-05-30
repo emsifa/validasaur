@@ -146,7 +146,7 @@ Result:
       "required": "Nama tidak boleh kosong"
     },
     "age": {
-      "isNumber": "Umur harus berupa angka"
+      "isNumber": "Usia harus berupa angka"
     }
   }
 }
