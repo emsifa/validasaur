@@ -6,7 +6,7 @@ import {
   InputData,
   InvalidPayload,
 } from "./interfaces.ts";
-import { isOptional, isOptionalValue, resolveMessages } from "./utils.ts";
+import { isOptional, isOptionalValue, resolveErrorMessages } from "./utils.ts";
 import { defaultMessages } from "./messages.ts";
 
 const getValue = (input: InputData, key: string): any => {
@@ -66,7 +66,7 @@ export const validate = async (
   const rawErrors = await validateData(input, rules);
   const passes = Object.keys(rawErrors).length === 0;
 
-  const errors = passes ? {} : resolveMessages(rawErrors, options);
+  const errors = passes ? {} : resolveErrorMessages(rawErrors, options);
 
   return [passes, errors];
 };

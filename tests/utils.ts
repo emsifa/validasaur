@@ -1,9 +1,6 @@
 import { RuleReturn } from "../src/types.ts";
 import { InvalidPayload } from "../src/interfaces.ts";
-import {
-  assertEquals,
-  assertNotEquals,
-} from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals, assertNotEquals } from "./deps.ts";
 
 export const assertInvalid = (
   result: RuleReturn,

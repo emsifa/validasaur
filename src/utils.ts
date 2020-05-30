@@ -92,7 +92,7 @@ export const resolveErrorMessage = (
   return msg;
 };
 
-export const getBestMessage = (
+export const findBestMessage = (
   messages: ValidationMessages,
   key: string,
   ruleName: string,
@@ -104,7 +104,7 @@ export const getBestMessage = (
     messages[ruleName] || messages[ruleKey] || defaultMsg;
 };
 
-export const resolveMessages = (
+export const resolveErrorMessages = (
   rawErrors: RawValidationResult,
   { messages, attributes }: ValidationOptions,
 ): ValidationErrors => {
@@ -117,17 +117,17 @@ export const resolveMessages = (
     for (let err of errs) {
       const ruleKey = err.rule.replace(/\:\w+$/, "");
       if (err.rule === "validateObject" && err.params.errors) {
-        errorMessages[key][ruleKey] = resolveMessages(
+        errorMessages[key][ruleKey] = resolveErrorMessages(
           err.params.errors,
           { messages, attributes },
         );
       } else if (err.rule === "validateArray" && err.params.errors) {
-        errorMessages[key][ruleKey] = resolveMessages(
+        errorMessages[key][ruleKey] = resolveErrorMessages(
           err.params.errors,
           { messages, attributes },
         );
       } else {
-        const msg = getBestMessage(
+        const msg = findBestMessage(
           messages || {},
           key,
           err.rule,
