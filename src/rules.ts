@@ -15,3 +15,4 @@ export * from "./rules/number_between.ts";
 export * from "./rules/required.ts";
 export * from "./rules/validate_array.ts";
 export * from "./rules/validate_object.ts";
+export * from "./rules/file_exists.ts";
