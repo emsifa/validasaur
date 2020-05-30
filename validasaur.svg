@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="185.29596mm"
-   height="43.088089mm"
-   viewBox="0 0 185.29596 43.088089"
+   width="102.60276mm"
+   height="23.858898mm"
+   viewBox="0 0 102.60276 23.858898"
    version="1.1"
    id="svg8"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="217.48376"
-     inkscape:cy="63.938964"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="383.43159"
+     inkscape:cy="265.08755"
      inkscape:document-units="mm"
      inkscape:current-layer="g921"
      inkscape:document-rotation="0"
@@ -67,7 +67,7 @@
          aria-label="VALIDASAUR"
          id="text993"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:63.8763px;line-height:1.25;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:5.98839"
-         transform="matrix(0.43965255,0,0,0.43965255,-103.55251,-61.297767)">
+         transform="matrix(0.24344604,0,0,0.24344604,-140.27588,-94.341607)">
         <path
            d="m -39.801115,-151.62105 -6.674574,50.49596 h -19.930155 l -7.579073,-50.49596 h 13.848183 q 2.401599,20.86584 3.430856,35.27543 1.029257,-14.56554 2.152082,-25.88736 l 0.904499,-9.38807 z"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;fill:#4765c9;fill-opacity:1;stroke-width:5.98839"
@@ -111,7 +111,7 @@
       </g>
       <g
          id="g863"
-         transform="matrix(0.43965255,0,0,0.43965255,-98.439465,-54.977613)"
+         transform="matrix(0.24344604,0,0,0.24344604,-137.44466,-90.841987)"
          inkscape:export-filename="C:\Users\emsifa\Pictures\validasaur.png"
          inkscape:export-xdpi="25.91708"
          inkscape:export-ydpi="25.91708">
@@ -121,7 +121,7 @@
           <path
              sodipodi:nodetypes="ccccccc"
              id="path833"
-             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:2.77766;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.55534, 5.55534000000000017;paint-order:stroke fill markers"
+             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:2.77766;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.55534, 5.55534;paint-order:stroke fill markers"
              inkscape:transform-center-x="3.8362221"
              inkscape:transform-center-y="12.585238"
              d="m -562.11328,-294.17969 v 0 l 189.24414,-140.32422 -45.57422,-230.08789 c 0,0 -70.16238,41.94448 -143.66992,0.68164 -0.07,0.0393 0.07,-0.0391 0,0 z"
@@ -129,7 +129,7 @@
           <path
              sodipodi:nodetypes="ccccc"
              id="path1184"
-             style="opacity:1;fill:#3f59b1;fill-opacity:1;stroke:none;stroke-width:2.77766;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.55534, 5.55534000000000017;paint-order:stroke fill markers"
+             style="opacity:1;fill:#3f59b1;fill-opacity:1;stroke:none;stroke-width:2.77766;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.55534, 5.55534;paint-order:stroke fill markers"
              inkscape:transform-center-x="3.8362221"
              inkscape:transform-center-y="12.585238"
              d="m -562.11328,-294.17969 v -369.73047 c -73.4311,41.06545 -143.66992,-0.68164 -143.66992,-0.68164 l -45.57422,230.08789 z"
@@ -139,7 +139,7 @@
              d="m 110.37181,-200.68949 -0.0601,-24.92739 -16.313206,13.21728 z"
              inkscape:transform-center-y="7.7290456"
              inkscape:transform-center-x="2.7482236"
-             style="opacity:1;fill:#b6c7c9;fill-opacity:1;stroke:none;stroke-width:0.487471;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.974942, 0.97494199999999998;paint-order:stroke fill markers"
+             style="opacity:1;fill:#b6c7c9;fill-opacity:1;stroke:none;stroke-width:0.487471;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.974942, 0.974942;paint-order:stroke fill markers"
              id="path846" />
           <path
              d="m 82.901919,-269.58021 -8.638233,42.88575 19.734708,14.29525 16.313216,-13.21728 0.0658,24.90477 0.0574,-0.0413 35.63588,-25.9414 -8.63875,-42.88575 c 0,0 -18.0617,4.38971 -27.16397,4.39312 -9.16929,0.003 -27.366071,-4.39316 -27.366071,-4.39316 z"
@@ -177,9 +177,9 @@
              cy="-237.92578"
              cx="98.418007"
              id="path854"
-             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5875, 1.58749999999999991;paint-order:stroke fill markers" />
+             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5875, 1.5875;paint-order:stroke fill markers" />
           <circle
-             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5875, 1.58749999999999991;paint-order:stroke fill markers"
+             style="opacity:1;fill:#4765c9;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5875, 1.5875;paint-order:stroke fill markers"
              id="circle856"
              cx="120.60137"
              cy="-237.92578"
@@ -187,7 +187,7 @@
           <path
              sodipodi:nodetypes="ccccc"
              id="path863"
-             style="opacity:1;fill:#c8dbdd;fill-opacity:1;stroke:none;stroke-width:0.487471;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.974942, 0.97494199999999998;paint-order:stroke fill markers"
+             style="opacity:1;fill:#c8dbdd;fill-opacity:1;stroke:none;stroke-width:0.487471;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.974942, 0.974942;paint-order:stroke fill markers"
              inkscape:transform-center-x="-2.7482239"
              inkscape:transform-center-y="7.7290436"
              d="m 110.37181,-200.68949 -0.20347,-24.9274 16.31322,13.21729 z" />
