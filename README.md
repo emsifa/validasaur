@@ -1,4 +1,4 @@
-![Validasaur](https://raw.githubusercontent.com/emsifa/validasaur/master/validasaur.svg)
+[![Validasaur](https://raw.githubusercontent.com/emsifa/validasaur/master/validasaur.svg)](#)
 
 [![tag](https://img.shields.io/github/tag/emsifa/validasaur.svg)](https://github.com/emsifa/validasaur)
 [![CI](https://github.com/emsifa/validasaur/workflows/ci/badge.svg)](https://github.com/emsifa/validasaur/actions)
@@ -105,6 +105,49 @@ Result:
     "age.isNumber": "age must be a number",
     "name": "name is required",
     "age": "age must be a number"
+  }
+}
+```
+
+#### Custom Error Message
+
+```ts
+import { validate, flattenMessages } from "repourl/src/mod.ts";
+import { required, isNumber, isString, validateArray, validateObject } from "repourl/src/rules.ts";
+
+const inputs = {
+  name: "",
+  age: '12',
+};
+
+const [passes, errors] = await validate(inputs, {
+  name: required,
+  age: [required, isNumber],
+}, {
+  messages: {
+    "name": "Nama tidak boleh kosong",
+    "age.required": "Usia tidak boleh kosong",
+    "age.isNumber": "Usia harus berupa angka",
+    // Use this if you want same message for any rule fail
+    // "age": "Usia tidak valid"
+  },
+});
+
+console.log({ passes, errors });
+```
+
+Result:
+
+```json
+{
+  "passes": false,
+  "errors": {
+    "name": {
+      "required": "Nama tidak boleh kosong"
+    },
+    "age": {
+      "isNumber": "Umur harus berupa angka"
+    }
   }
 }
 ```

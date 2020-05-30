@@ -7,6 +7,7 @@ import {
   FlattenMessages,
   RawValidationResult,
   ValidationOptions,
+  ValidationMessages,
 } from "./interfaces.ts";
 import { required } from "./rules/required.ts";
 
@@ -91,6 +92,18 @@ export const resolveErrorMessage = (
   return msg;
 };
 
+export const getBestMessage = (
+  messages: ValidationMessages,
+  key: string,
+  ruleName: string,
+  ruleKey: string,
+  defaultMsg: string,
+): string => {
+  return messages[`${key}.${ruleName}`] || messages[`${key}.${ruleKey}`] ||
+    messages[key] ||
+    messages[ruleName] || messages[ruleKey] || defaultMsg;
+};
+
 export const resolveMessages = (
   rawErrors: RawValidationResult,
   { messages, attributes }: ValidationOptions,
@@ -102,7 +115,7 @@ export const resolveMessages = (
     const attr = (attributes || {})[key] || key;
     errorMessages[key] = {} as { [k: string]: string };
     for (let err of errs) {
-      const ruleKey = err.rule.replace(/\:\w+$/, '');
+      const ruleKey = err.rule.replace(/\:\w+$/, "");
       if (err.rule === "validateObject" && err.params.errors) {
         errorMessages[key][ruleKey] = resolveMessages(
           err.params.errors,
@@ -114,7 +127,13 @@ export const resolveMessages = (
           { messages, attributes },
         );
       } else {
-        const msg = (messages || {})[err.rule] || defaultMessage;
+        const msg = getBestMessage(
+          messages || {},
+          key,
+          err.rule,
+          ruleKey,
+          defaultMessage,
+        );
         errorMessages[key][ruleKey] = resolveErrorMessage(
           msg,
           err.params,
