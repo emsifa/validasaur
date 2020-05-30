@@ -4,7 +4,10 @@ import { assertInvalid, assertValid } from "../utils.ts";
 import { RuleReturn } from "../../src/types.ts";
 
 Deno.test("maxNumber(5)(10) should be invalid", () => {
-  assertInvalid(maxNumber(5)(10) as RuleReturn, invalid("maxNumber", { value: 10, maxValue: 5 }));
+  assertInvalid(
+    maxNumber(5)(10) as RuleReturn,
+    invalid("maxNumber", { value: 10, maxValue: 5 }),
+  );
 });
 
 Deno.test("maxNumber(5)(5) should be valid", () => {

@@ -11,7 +11,7 @@ Deno.test("isFloat(undefined) should be invalid", () => {
 });
 
 Deno.test("isFloat('') should be invalid", () => {
-  assertInvalid(isFloat(''), invalid("isFloat", { value: '' }));
+  assertInvalid(isFloat(""), invalid("isFloat", { value: "" }));
 });
 
 Deno.test("isFloat(0) should be invalid", () => {

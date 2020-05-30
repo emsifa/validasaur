@@ -7,11 +7,14 @@ Deno.test("isNumeric(null) should be invalid", () => {
 });
 
 Deno.test("isNumeric(undefined) should be invalid", () => {
-  assertInvalid(isNumeric(undefined), invalid("isNumeric", { value: undefined }));
+  assertInvalid(
+    isNumeric(undefined),
+    invalid("isNumeric", { value: undefined }),
+  );
 });
 
 Deno.test("isNumeric('') should be invalid", () => {
-  assertInvalid(isNumeric(''), invalid("isNumeric", { value: '' }));
+  assertInvalid(isNumeric(""), invalid("isNumeric", { value: "" }));
 });
 
 Deno.test("isNumeric(0) should be valid", () => {
@@ -23,9 +26,9 @@ Deno.test("isNumeric(0.5) should be valid", () => {
 });
 
 Deno.test("isNumeric('0') should be valid", () => {
-  assertValid(isNumeric('0'));
+  assertValid(isNumeric("0"));
 });
 
 Deno.test("isNumeric('0.5') should be valid", () => {
-  assertValid(isNumeric('0.5'));
+  assertValid(isNumeric("0.5"));
 });

@@ -15,5 +15,5 @@ Deno.test("isString(0.1) should be invalid", () => {
 });
 
 Deno.test("isString('') should be valid", () => {
-  assertValid(isString(''));
+  assertValid(isString(""));
 });

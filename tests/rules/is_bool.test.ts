@@ -11,7 +11,7 @@ Deno.test("isBool(undefined) should be invalid", () => {
 });
 
 Deno.test("isBool('') should be invalid", () => {
-  assertInvalid(isBool(''), invalid("isBool", { value: '' }));
+  assertInvalid(isBool(""), invalid("isBool", { value: "" }));
 });
 
 Deno.test("isBool(0) should be invalid", () => {

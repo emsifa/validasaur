@@ -7,11 +7,14 @@ Deno.test("required(null) should be invalid", () => {
 });
 
 Deno.test("required(undefined) should be invalid", () => {
-  assertInvalid(required(undefined), invalid("required", { value: undefined }, true));
+  assertInvalid(
+    required(undefined),
+    invalid("required", { value: undefined }, true),
+  );
 });
 
 Deno.test("required('') should be invalid", () => {
-  assertInvalid(required(''), invalid("required", { value: '' }, true));
+  assertInvalid(required(""), invalid("required", { value: "" }, true));
 });
 
 Deno.test("required(0) should be valid", () => {
@@ -27,5 +30,5 @@ Deno.test("required({}) should be valid", () => {
 });
 
 Deno.test("required('0') should be valid", () => {
-  assertValid(required('0'));
+  assertValid(required("0"));
 });

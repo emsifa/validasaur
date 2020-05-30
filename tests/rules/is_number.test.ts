@@ -19,7 +19,7 @@ Deno.test("isNumber([0]) should be invalid", () => {
 });
 
 Deno.test("isNumber('0') should be invalid", () => {
-  assertInvalid(isNumber('0'), invalid("isNumber", { value: '0' }));
+  assertInvalid(isNumber("0"), invalid("isNumber", { value: "0" }));
 });
 
 Deno.test("isNumber({}) should be invalid", () => {

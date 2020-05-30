@@ -11,7 +11,7 @@ Deno.test("isArray(undefined) should be invalid", () => {
 });
 
 Deno.test("isArray('') should be invalid", () => {
-  assertInvalid(isArray(''), invalid("isArray", { value: '' }));
+  assertInvalid(isArray(""), invalid("isArray", { value: "" }));
 });
 
 Deno.test("isArray(false) should be invalid", () => {

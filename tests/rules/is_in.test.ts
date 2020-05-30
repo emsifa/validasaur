@@ -4,11 +4,17 @@ import { assertInvalid, assertValid } from "../utils.ts";
 import { RuleReturn } from "../../src/types.ts";
 
 Deno.test("isIn([0, 1, 2])(null) should be invalid", () => {
-  assertInvalid(isIn([0, 1, 2])(null) as RuleReturn, invalid("isIn", { value: null, allowedValues: [0, 1, 2] }));
+  assertInvalid(
+    isIn([0, 1, 2])(null) as RuleReturn,
+    invalid("isIn", { value: null, allowedValues: [0, 1, 2] }),
+  );
 });
 
 Deno.test("isIn([0, 1, 2])('0') should be invalid", () => {
-  assertInvalid(isIn([0, 1, 2])('0') as RuleReturn, invalid("isIn", { value: '0', allowedValues: [0, 1, 2] }));
+  assertInvalid(
+    isIn([0, 1, 2])("0") as RuleReturn,
+    invalid("isIn", { value: "0", allowedValues: [0, 1, 2] }),
+  );
 });
 
 Deno.test("isIn([0, 1, 2])(1) should be valid", () => {

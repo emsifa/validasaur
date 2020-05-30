@@ -11,7 +11,7 @@ Deno.test("isInt(undefined) should be invalid", () => {
 });
 
 Deno.test("isInt('') should be invalid", () => {
-  assertInvalid(isInt(''), invalid("isInt", { value: '' }));
+  assertInvalid(isInt(""), invalid("isInt", { value: "" }));
 });
 
 Deno.test("isInt(0.1) should be invalid", () => {
