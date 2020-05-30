@@ -1,6 +1,6 @@
 import { ValidationErrors, InvalidPayload } from "./interfaces.ts";
 
-export type OptionalValue = null | undefined | '';
+export type OptionalValue = null | undefined | "";
 
 export type RuleReturn = InvalidPayload | undefined;
 

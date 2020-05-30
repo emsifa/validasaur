@@ -1,5 +1,14 @@
 import { Rule } from "./types.ts";
-import { InvalidParams, InvalidPayload, ValidationMessages, ValidationErrors, FirstMessages, FlattenMessages, RawValidationResult, ValidationOptions } from "./interfaces.ts";
+import {
+  InvalidParams,
+  InvalidPayload,
+  ValidationMessages,
+  ValidationErrors,
+  FirstMessages,
+  FlattenMessages,
+  RawValidationResult,
+  ValidationOptions,
+} from "./interfaces.ts";
 import { required } from "./rules/required.ts";
 
 export function invalid(
@@ -36,7 +45,10 @@ export function firstMessages(messages: ValidationErrors): FirstMessages {
   return results;
 }
 
-export function flattenMessages(messages: ValidationErrors, firstMessagesOnly: boolean = false): FlattenMessages {
+export function flattenMessages(
+  messages: ValidationErrors,
+  firstMessagesOnly: boolean = false,
+): FlattenMessages {
   const flatten = (data: any, prefix: string = ""): FlattenMessages => {
     if (typeof data !== "object") {
       return {};
@@ -45,7 +57,10 @@ export function flattenMessages(messages: ValidationErrors, firstMessagesOnly: b
     let results: FlattenMessages = {};
     for (let key in data) {
       const d = data[key];
-      const resKey = `${prefix ? prefix + '.' : ''}${key}`.replace(/\.validate(Array|Object)/g, '');
+      const resKey = `${prefix ? prefix + "." : ""}${key}`.replace(
+        /\.validate(Array|Object)/g,
+        "",
+      );
       if (typeof d === "object" && d !== null) {
         results = { ...results, ...flatten(d, resKey) };
       } else {
@@ -57,7 +72,7 @@ export function flattenMessages(messages: ValidationErrors, firstMessagesOnly: b
 
   const results: FlattenMessages = {
     ...(firstMessagesOnly ? {} : flatten(messages)),
-    ...flatten(firstMessages(messages))
+    ...flatten(firstMessages(messages)),
   };
 
   return results;
@@ -86,15 +101,25 @@ export const resolveMessages = (
   for (let key in rawErrors) {
     const errs = rawErrors[key] as InvalidPayload[];
     const attr = (attributes || {})[key] || key;
-    errorMessages[key] = {} as {[k:string]: string};
+    errorMessages[key] = {} as { [k: string]: string };
     for (let err of errs) {
       if (err.rule === "validateObject" && err.params.errors) {
-        errorMessages[key][err.rule] = resolveMessages(err.params.errors, { messages, attributes });
+        errorMessages[key][err.rule] = resolveMessages(
+          err.params.errors,
+          { messages, attributes },
+        );
       } else if (err.rule === "validateArray" && err.params.errors) {
-        errorMessages[key][err.rule] = resolveMessages(err.params.errors, { messages, attributes });
+        errorMessages[key][err.rule] = resolveMessages(
+          err.params.errors,
+          { messages, attributes },
+        );
       } else {
         const msg = (messages || {})[err.rule] || defaultMessage;
-        errorMessages[key][err.rule] = resolveErrorMessage(msg, err.params, attr);
+        errorMessages[key][err.rule] = resolveErrorMessage(
+          msg,
+          err.params,
+          attr,
+        );
       }
     }
   }

@@ -44,7 +44,9 @@ export const validateData = async (
 ): Promise<RawValidationResult> => {
   const results: RawValidationResult = {};
   for (let key in rules) {
-    const keyRules = (rules[key] instanceof Array ? rules[key] : [rules[key]]) as Rule[];
+    const keyRules = (rules[key] instanceof Array
+      ? rules[key]
+      : [rules[key]]) as Rule[];
     const value: any = getValue(input, key);
     const errors: InvalidPayload[] = await validateValue(value, keyRules);
     if (errors.length) {

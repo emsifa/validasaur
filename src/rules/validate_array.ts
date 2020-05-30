@@ -2,7 +2,13 @@ import { invalid, isOptionalValue } from "../utils.ts";
 import { RuleReturn, Rule } from "../types.ts";
 import { isNumber } from "./is_number.ts";
 import { required } from "./required.ts";
-import { ValidationRules, InputData, InvalidParams, InvalidPayload, RawValidationResult } from "../interfaces.ts";
+import {
+  ValidationRules,
+  InputData,
+  InvalidParams,
+  InvalidPayload,
+  RawValidationResult,
+} from "../interfaces.ts";
 import { validateData, validateValue } from "../validate.ts";
 
 export function validateArray(isRequired: boolean, rules: Rule[]): Rule[] {
@@ -28,6 +34,6 @@ export function validateArray(isRequired: boolean, rules: Rule[]): Rule[] {
       if (Object.keys(errors).length > 0) {
         return invalid("validateArray", { value, errors }, true);
       }
-    }
+    },
   ];
 }

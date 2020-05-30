@@ -5,7 +5,10 @@ import { required } from "./required.ts";
 import { ValidationRules, InputData } from "../interfaces.ts";
 import { validateData } from "../validate.ts";
 
-export function validateObject(isRequired: boolean, rules: ValidationRules): Rule[] {
+export function validateObject(
+  isRequired: boolean,
+  rules: ValidationRules,
+): Rule[] {
   return [
     ...(isRequired ? [required] : []),
     async function ruleObject(value: any): Promise<RuleReturn> {
@@ -23,6 +26,6 @@ export function validateObject(isRequired: boolean, rules: ValidationRules): Rul
       if (Object.keys(errors).length > 0) {
         return invalid("validateObject", { value, errors }, true);
       }
-    }
+    },
   ];
 }
