@@ -2,7 +2,6 @@ import { Rule } from "./types.ts";
 import {
   InvalidParams,
   InvalidPayload,
-  ValidationMessages,
   ValidationErrors,
   FirstMessages,
   FlattenMessages,
