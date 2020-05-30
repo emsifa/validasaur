@@ -9,7 +9,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
 
 #### Basic Usage
 
-For example, let's write our `example.ts` like this:
+Write your `example.ts` like this:
 
 ```ts
 import { validate } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/mod.ts";
@@ -28,7 +28,7 @@ const [ passes, errors ] = await validate(inputs, {
 console.log({ passes, errors });
 ```
 
-Then, run code above with:
+Run code above with:
 
 ```bash
 deno run example.ts
