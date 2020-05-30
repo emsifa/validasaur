@@ -1,7 +1,7 @@
 ![Validasaur](https://raw.githubusercontent.com/emsifa/validasaur/master/validasaur.svg)
 
 [![CI](https://github.com/emsifa/validasaur/workflows/ci/badge.svg)](https://github.com/emsifa/validasaur/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/emsifa/validasaur/blob/master/LICENSE)
 
 Validasaur is Deno validation library slightly inspired by Laravel Validation.
 
