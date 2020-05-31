@@ -15,6 +15,7 @@ export * from "./rules/min_number.ts";
 export * from "./rules/not_in.ts";
 export * from "./rules/not_null.ts";
 export * from "./rules/number_between.ts";
+export * from "./rules/pattern.ts";
 export * from "./rules/required.ts";
 export * from "./rules/validate_array.ts";
 export * from "./rules/validate_object.ts";
