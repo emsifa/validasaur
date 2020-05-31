@@ -320,6 +320,22 @@ Value under this field must be a string.
 * Invalid values: `1`, `1.5`, etc.
 * Valid values: `"1"`, `"1.5"`, `"foo"`, etc.
 
+#### `minLength(minValue: number)`
+
+Value under this field must be a string that has char length lower or equals `maxValue`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 'foobarbaz',
+  value2: 'foobar',
+}, {
+  value1: maxLength(6), // fail
+  value2: maxLength(6), // passes
+})
+```
+
 #### `maxNumber(maxValue: number)`
 
 Value under this field should be a number that is not higher than `maxValue`.
@@ -422,7 +438,6 @@ const [ passes, errors ] = await validate({
 * [ ] `isIpAddress` rule.
 * [ ] `isIpv4` rule.
 * [ ] `isIpv6` rule.
-* [ ] `maxLength` rule to check maximum length of a string or an array.
 * [ ] `lengthBetween` rule to check minimum and maximum length of a string or an array.
 * [ ] `startsWith` rule to check string prefix.
 * [ ] `endsWith` rule to check string postfix.

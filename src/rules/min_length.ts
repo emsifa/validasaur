@@ -1,6 +1,5 @@
 import { invalid } from "../utils.ts";
 import { RuleReturn, Rule } from "../types.ts";
-import { isNumber } from "./is_number.ts";
 
 export function minLength(minValue: number): Rule {
   return function minLengthRule(value: any): RuleReturn {
