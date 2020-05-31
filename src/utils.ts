@@ -97,11 +97,11 @@ export const findBestMessage = (
   key: string,
   ruleName: string,
   ruleKey: string,
-  defaultMsg: string,
+  defaultMessage: string,
 ): string => {
   return messages[`${key}.${ruleName}`] || messages[`${key}.${ruleKey}`] ||
     messages[key] ||
-    messages[ruleName] || messages[ruleKey] || defaultMsg;
+    messages[ruleName] || messages[ruleKey] || defaultMessage;
 };
 
 export const resolveErrorMessages = (
@@ -109,7 +109,7 @@ export const resolveErrorMessages = (
   { messages, attributes }: ValidationOptions,
 ): ValidationErrors => {
   const errorMessages: ValidationErrors = {};
-  const defaultMessage = ":attr is invalid";
+  const defaultMessage = (messages || {})["default"] || ":attr is invalid";
   for (let key in rawErrors) {
     const errs = rawErrors[key] as InvalidPayload[];
     const attr = (attributes || {})[key] || key;

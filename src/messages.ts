@@ -18,4 +18,5 @@ export const defaultMessages: ValidationMessages = {
   "notNull": ":value cannot be null",
   "numberBetween": ":value must be between :minValue - :maxValue",
   "required": ":attr is required",
+  "default": ":atts is invalid",
 };
