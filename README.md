@@ -340,6 +340,22 @@ const [ passes, errors ] = await validate({
 })
 ```
 
+#### `minLength(minValue: number)`
+
+Value under this field must be a string that has char length higher or equals `minValue`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 'foo',
+  value2: 'foobar',
+}, {
+  value1: minLength(6), // fail
+  value2: minLength(6), // passes
+})
+```
+
 #### `minNumber(minValue: number)`
 
 Value under this field should be a number that is not lower than `minValue`.
@@ -406,7 +422,6 @@ const [ passes, errors ] = await validate({
 * [ ] `isIpAddress` rule.
 * [ ] `isIpv4` rule.
 * [ ] `isIpv6` rule.
-* [ ] `minLenght` rule to check minimum length of a string or an array.
 * [ ] `maxLength` rule to check maximum length of a string or an array.
 * [ ] `lengthBetween` rule to check minimum and maximum length of a string or an array.
 * [ ] `startsWith` rule to check string prefix.
