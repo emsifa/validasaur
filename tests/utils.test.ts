@@ -1,7 +1,7 @@
 import * as utils from "../src/utils.ts";
 import { assertEquals, assertNotEquals } from "./deps.ts";
 import { required, isNumber, isInt, isIn } from "../src/rules.ts";
-import { ValidationErrors } from "../src/interfaces.ts";
+import { ValidationErrors, RawValidationResult } from "../src/interfaces.ts";
 
 const sampleErrorMessages = (): ValidationErrors => ({
   "x": {
@@ -196,4 +196,136 @@ Deno.test("utils.resolveErrorMessage()", () => {
 });
 
 Deno.test("utils.resolveErrorMessages()", () => {
+  const sampleRawErrors: RawValidationResult = {
+    x: [
+      {
+        rule: "rule1",
+        params: {},
+        implicit: false,
+      },
+      {
+        rule: "rule2",
+        params: { a: 10 },
+        implicit: false,
+      },
+    ],
+    arr: [
+      {
+        rule: "validateArray",
+        params: {
+          errors: {
+            "1": [
+              {
+                rule: "rule1",
+                params: {},
+                implicit: false,
+              },
+              {
+                rule: "rule2",
+                params: {},
+                implicit: false,
+              },
+            ],
+          },
+        },
+        implicit: true,
+      },
+    ],
+    obj: [
+      {
+        rule: "validateObject",
+        params: {
+          errors: {
+            x: [
+              {
+                rule: "rule1",
+                params: {},
+                implicit: false,
+              },
+              {
+                rule: "rule2",
+                params: {},
+                implicit: false,
+              },
+            ],
+          },
+        },
+        implicit: true,
+      },
+    ],
+    arrObj: [
+      {
+        rule: "validateArray",
+        params: {
+          errors: {
+            "1": [
+              {
+                rule: "validateObject",
+                params: {
+                  errors: {
+                    x: [
+                      {
+                        rule: "rule1",
+                        params: {},
+                        implicit: false,
+                      },
+                      {
+                        rule: "rule2",
+                        params: {},
+                        implicit: false,
+                      },
+                    ],
+                  },
+                },
+                implicit: true,
+              },
+            ],
+          },
+        },
+        implicit: true,
+      },
+    ],
+  };
+
+  const result = utils.resolveErrorMessages(sampleRawErrors, {
+    messages: {
+      "rule1": "invalid rule1",
+      "rule2": "invalid rule2",
+    },
+  });
+
+  assertEquals(result, {
+    x: {
+      rule1: "invalid rule1",
+      rule2: "invalid rule2",
+    },
+    arr: {
+      validateArray: {
+        "1": {
+          rule1: "invalid rule1",
+          rule2: "invalid rule2",
+        },
+      },
+    },
+    obj: {
+      validateObject: {
+        x: {
+          rule1: "invalid rule1",
+          rule2: "invalid rule2",
+        },
+      },
+    },
+    arrObj: {
+      validateArray: {
+        "1": {
+          validateObject: {
+            x: {
+              rule1: "invalid rule1",
+              rule2: "invalid rule2",
+            },
+          },
+        },
+      },
+    },
+  });
 });
