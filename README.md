@@ -112,8 +112,14 @@ Result:
 #### Custom Error Message
 
 ```ts
-import { validate, flattenMessages } from "repourl/src/mod.ts";
-import { required, isNumber, isString, validateArray, validateObject } from "repourl/src/rules.ts";
+import { validate, flattenMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import {
+  required,
+  isNumber,
+  isString,
+  validateArray,
+  validateObject
+} from "https://deno.land/x/validasaur/src/rules.ts";
 
 const inputs = {
   name: "",
@@ -155,8 +161,14 @@ Result:
 #### Validating Array and Object
 
 ```ts
-import { validate, flattenMessages } from "repourl/src/mod.ts";
-import { required, isNumber, isString, validateArray, validateObject } from "repourl/src/rules.ts";
+import { validate, flattenMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import {
+  required,
+  isNumber,
+  isString,
+  validateArray,
+  validateObject
+} from "https://deno.land/x/validasaur/src/rules.ts";
 
 const inputs = {
   name: "",
