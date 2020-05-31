@@ -12,7 +12,11 @@ export const defaultMessages: ValidationMessages = {
   "isNumber": ":attr must be a number",
   "isNumeric": ":attr must be numeric",
   "isString": ":attr must be a string",
+  "lengthBetween":
+    ":attr characters length must be between :minValue-:maxValue",
+  "maxLength": ":attr cannot be higher than :maxValue characters",
   "maxNumber": ":attr cannot be higher than :maxValue",
+  "minLength": ":attr cannot be lower than :minValue characters",
   "minNumber": ":attr cannot be lower than :minValue",
   "notIn": ":value is not allowed",
   "notNull": ":value cannot be null",
