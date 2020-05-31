@@ -12,15 +12,15 @@ Deno.test("rules.minLength(4)(5) should be invalid", () => {
 
 Deno.test("rules.minLength(4)('foo') should be invalid", () => {
   assertInvalid(
-    minLength(4)('foo') as RuleReturn,
-    invalid("minLength", { value: 'foo', minValue: 4 }),
+    minLength(4)("foo") as RuleReturn,
+    invalid("minLength", { value: "foo", minValue: 4 }),
   );
 });
 
 Deno.test("rules.minLength(6)('foobar') should be valid", () => {
-  assertValid(minLength(6)('foobar') as RuleReturn);
+  assertValid(minLength(6)("foobar") as RuleReturn);
 });
 
 Deno.test("rules.minLength(6)('foobarbaz') should be valid", () => {
-  assertValid(minLength(6)('foobarbaz') as RuleReturn);
+  assertValid(minLength(6)("foobarbaz") as RuleReturn);
 });

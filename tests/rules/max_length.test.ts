@@ -12,15 +12,15 @@ Deno.test("rules.maxLength(4)(3) should be invalid", () => {
 
 Deno.test("rules.maxLength(4)('foobar') should be invalid", () => {
   assertInvalid(
-    maxLength(4)('foobar') as RuleReturn,
-    invalid("maxLength", { value: 'foobar', maxValue: 4 }),
+    maxLength(4)("foobar") as RuleReturn,
+    invalid("maxLength", { value: "foobar", maxValue: 4 }),
   );
 });
 
 Deno.test("rules.maxLength(6)('foobar') should be valid", () => {
-  assertValid(maxLength(6)('foobar') as RuleReturn);
+  assertValid(maxLength(6)("foobar") as RuleReturn);
 });
 
 Deno.test("rules.maxLength(6)('foo') should be valid", () => {
-  assertValid(maxLength(6)('foo') as RuleReturn);
+  assertValid(maxLength(6)("foo") as RuleReturn);
 });
