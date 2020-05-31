@@ -14,8 +14,8 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
 Write your `example.ts` like this:
 
 ```ts
-import { validate } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/mod.ts";
-import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/rules.ts";
+import { validate } from "https://deno.land/x/validasaur/src/mod.ts";
+import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
 
 const inputs = {
   name: "",
@@ -60,8 +60,8 @@ you can use `flattenMessages` or `firstMessages` to format error messages.
 For example:
 
 ```ts
-import { validate, flattenMessages, firstMessages } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/mod.ts";
-import { required, isNumber } from "https://raw.githubusercontent.com/emsifa/validasaur/master/src/rules.ts";
+import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
 
 const inputs = {
   name: "",
