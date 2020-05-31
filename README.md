@@ -387,3 +387,16 @@ const [ passes, errors ] = await validate({
   value4: numberBetween(5, 10), // fail
 })
 ```
+
+## TODOS
+
+* [ ] `isUrl` rule.
+* [ ] `isIpAddress` rule.
+* [ ] `isIpv4` rule.
+* [ ] `isIpv6` rule.
+* [ ] `minLenght` rule to check minimum length of a string or an array.
+* [ ] `maxLength` rule to check maximum length of a string or an array.
+* [ ] `lengthBetween` rule to check minimum and maximum length of a string or an array.
+* [ ] `startsWith` rule to check string prefix.
+* [ ] `endsWith` rule to check string postfix.
+* [ ] add more examples to documentation.
