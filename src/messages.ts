@@ -14,6 +14,7 @@ export const defaultMessages: ValidationMessages = {
   "isString": ":attr must be a string",
   "lengthBetween":
     ":attr characters length must be between :minValue-:maxValue",
+  "match": ":attr format is incorrect",
   "maxLength": ":attr cannot be higher than :maxValue characters",
   "maxNumber": ":attr cannot be higher than :maxValue",
   "minLength": ":attr cannot be lower than :minValue characters",

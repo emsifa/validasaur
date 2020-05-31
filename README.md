@@ -340,6 +340,28 @@ const [ passes, errors ] = await validate({
 })
 ```
 
+#### `match(regex: RegExp, trim: boolean = false)`
+
+Value under this field must be a string that match with given `regex`.
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 'foo$',
+  value2: '$foo',
+  value3: 'foo1',
+  value4: 'foo2',
+  value5: ' foo3',
+  value6: ' foo4',
+}, {
+  value1: match(/^[a-z0-9]{4}$/), // fail
+  value2: match(/^[a-z0-9]{4}$/), // fail
+  value3: match(/^[a-z0-9]{4}$/), // passes
+  value4: match(/^[a-z0-9]{4}$/), // passes
+  value5: match(/^[a-z0-9]{4}$/), // fail
+  value6: match(/^[a-z0-9]{4}$/, true), // passes after trim
+})
+```
+
 #### `maxLength(minValue: number)`
 
 Value under this field must be a string that has char length lower or equals `maxValue`.
@@ -449,28 +471,6 @@ const [ passes, errors ] = await validate({
   value2: numberBetween(5, 10), // passes
   value3: numberBetween(5, 10), // fail
   value4: numberBetween(5, 10), // fail
-})
-```
-
-#### `pattern(regex: RegExp, trim: boolean = false)`
-
-Value under this field must be a string that match with given `regex`.
-
-```ts
-const [ passes, errors ] = await validate({
-  value1: 'foo$',
-  value2: '$foo',
-  value3: 'foo1',
-  value4: 'foo2',
-  value5: ' foo3',
-  value6: ' foo4',
-}, {
-  value1: pattern(/^[a-z0-9]{4}$/), // fail
-  value2: pattern(/^[a-z0-9]{4}$/), // fail
-  value3: pattern(/^[a-z0-9]{4}$/), // passes
-  value4: pattern(/^[a-z0-9]{4}$/), // passes
-  value5: pattern(/^[a-z0-9]{4}$/), // fail
-  value6: pattern(/^[a-z0-9]{4}$/, true), // passes after trim
 })
 ```
 
