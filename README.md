@@ -206,3 +206,184 @@ Result:
   }
 }
 ```
+
+## Available Rules
+
+#### `required`
+
+Value under this field should not be `null`, `undefined`, or an empty string (`""`).
+
+* Invalid values: `null`, `undefined`, `""`
+* Valid values: `"0"`, `[]`, `{}`, `0`, etc.
+
+#### `fileExists(pathPrefix: string)`
+
+Value under this field must be existed file.
+
+For example you have file `/var/www/media/image.jpg` in your file system:
+
+```ts
+const [ passes, errors ] = await validate({
+  file1: "image.jpg",
+  file2: "image.jpg",
+  file3: "not-image.txt"
+}, {
+  file1: fileExists("/var/www/media"), // << this will be fail because it check "/var/www/mediaimage.jpg"
+  file2: fileExists("/var/www/media/"), // << this will be pass
+  file3: fileExists("/var/www/media/"), // << this will be fail because it check "/var/www/media/not-image.txt" that is not exists
+})
+```
+
+#### `isArray`
+
+Value under this field must be an array.
+
+* Invalid values: `""`, `10`, `0.5`, etc.
+* Valid values: `[]`, `[1, 2, 3]`, `[{x: 10}, {x: 12}]`, etc.
+
+#### `isBool`
+
+Value under this field must be a boolean.
+
+* Invalid values: `""`, `10`, `0.5`, etc.
+* Valid values: `true` and `false`.
+
+#### `isEmail`
+
+Value under this field must be valid email address.
+
+* Invalid values: `"someone name"`, `123`, `foo.bar.baz`, `foo@bar@baz`, etc.
+* Valid values: `"someone@mail.com"`, `"someone@mail.co.id"`, `"someone@[1.2.3.4]"`, etc.
+
+#### `isFloat`
+
+Value under this field must be a float number.
+
+* Invalid values: `"0.1"`, `[]`, `0`, `1`, `123`, etc.
+* Valid values: `0.1`, `1.2`, `12.345`, etc.
+
+#### `isIn(allowedValues: PrimitiveTypes[])`
+
+Value under this field must be one of allowed values.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: "yes",
+  value2: "no",
+  value3: "maybe"
+}, {
+  value1: isIn(["yes", "no"]), // passes
+  value2: isIn(["yes", "no"]), // passes
+  value3: isIn(["yes", "no"]), // fail
+})
+```
+
+#### `isInt`
+
+Value under this field must be an integer.
+
+* Invalid values: `0.5`, `"123"`, etc.
+* Valid values: `0`, `123`, etc.
+
+#### `isNumber`
+
+Value under this field must be a float or an integer.
+
+* Invalid values: `"1"`, `"1.5"`, etc.
+* Valid values: `1`, `1.5`, etc.
+
+#### `isNumeric`
+
+Same as `asNumber`, but it allows numeric string.
+
+* Invalid values: `"1.0abc"`, `"x.1"`, etc.
+* Valid values: `1`, `1.5`, `"2"`, `"2.5"`, etc.
+
+#### `isString`
+
+Value under this field must be a string.
+
+* Invalid values: `1`, `1.5`, etc.
+* Valid values: `"1"`, `"1.5"`, `"foo"`, etc.
+
+#### `maxNumber(maxValue: number)`
+
+Value under this field should be a number that is not higher than `maxValue`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 6,
+  value2: 5.01,
+  value3: 5,
+  value4: 4
+}, {
+  value1: maxNumber(5), // fail
+  value2: maxNumber(5), // fail
+  value3: maxNumber(5), // passes
+  value4: maxNumber(5), // passes
+})
+```
+
+#### `minNumber(minValue: number)`
+
+Value under this field should be a number that is not lower than `minValue`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 1,
+  value2: 4.99,
+  value3: 5,
+  value4: 5.01,
+}, {
+  value1: minNumber(5), // fail
+  value2: minNumber(5), // fail
+  value3: minNumber(5), // passes
+  value4: minNumber(5), // passes
+})
+```
+
+#### `notIn(disallowedValues: PrimitiveTypes[])`
+
+Value under this field must not be one of disallowed values.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: "yes",
+  value2: "no",
+  value3: "maybe"
+}, {
+  value1: notIn(["yes", "no"]), // fail
+  value2: notIn(["yes", "no"]), // fail
+  value3: notIn(["yes", "no"]), // passes
+})
+```
+
+#### `notNull`
+
+Value under this field must not be `null`.
+
+#### `numberBetween(minValue: number, maxValue: number)`
+
+Value under this field must be a number between `minValue` and `maxValue`.
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 5,
+  value2: 10,
+  value3: 4.99,
+  value4: 10.01,
+}, {
+  value1: numberBetween(5, 10), // passes
+  value2: numberBetween(5, 10), // passes
+  value3: numberBetween(5, 10), // fail
+  value4: numberBetween(5, 10), // fail
+})
+```
