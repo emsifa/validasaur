@@ -592,26 +592,6 @@ Example:
 
 ```ts
 const [ passes, errors ] = await validate({
-  value1: 1,
-  value2: 4.99,
-  value3: 5,
-  value4: 5.01,
-}, {
-  value1: minNumber(5), // fail
-  value2: minNumber(5), // fail
-  value3: minNumber(5), // passes
-  value4: minNumber(5), // passes
-})
-```
-
-#### `notIn(disallowedValues: PrimitiveTypes[])`
-
-Value under this field must not be one of disallowed values.
-
-Example:
-
-```ts
-const [ passes, errors ] = await validate({
   value1: null,
   value2: null,
   value3: "3",
