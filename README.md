@@ -61,6 +61,8 @@ const [ passes, errors ] = await validate(inputs, {
 console.log({ passes, errors });
 ```
 
+> Actually rules are also available to import from `mod.ts`, it is up to you to import from `mod.ts` or `rules.ts`.
+
 Run code above with:
 
 ```bash
