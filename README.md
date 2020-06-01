@@ -21,6 +21,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
   * [fileExists](#fileexistspathprefix-string)
   * [isArray](#isarray)
   * [isBool](#isbool)
+  * [isDate](#isdate)
   * [isEmail](#isemail)
   * [isFloat](#isfloat)
   * [isIn](#isinallowedvalues-primitivetypes)
@@ -375,6 +376,13 @@ Value under this field must be a boolean.
 
 * Invalid values: `""`, `10`, `0.5`, etc.
 * Valid values: `true` and `false`.
+
+#### `isDate`
+
+Value under this field must be a string that has length >= 10 and can be parsed by `Date.parse()`.
+
+* Invalid values: `2020`, `"01-2020-10"`, `"2020-01"`, etc.
+* Valid values: `"2020-01-02"`, `"2020-01-02 10:20:30"`, `"2020/01/02"`, etc.
 
 #### `isEmail`
 
