@@ -271,12 +271,12 @@ import { invalid, Validity, Rule } from "https://deno.land/x/validasaur/src/mod.
 
 export function unique(table: string, column: string): Rule {
   return async function uniqueRule(value: any): Promise<Validity> {
-    if (typeof value !== "string" || typeof value !== "number") {
+    if (typeof value !== "string" && typeof value !== "number") {
       return invalid("unique", { value, table, column });
     }
 
     const data = await db.findOne(table, { [column]: value });
-    if (data) {
+    if (data !== null) {
       return invalid("unique", { value, table, column });
     }
   };
