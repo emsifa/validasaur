@@ -7,6 +7,37 @@
 
 Validasaur is Deno validation library slightly inspired by Laravel Validation.
 
+## Table of Contents
+
+* [Examples](#examples)
+  * [Basic Usage](#basic-usage)
+  * [Formatting Errors](#formatting-errors)
+  * [Custom Error message](#custom-error-message)
+  * [Validating Array and Object](#validating-array-and-object)
+  * [Make Your own Simple Rule Validation](#make-your-own-simple-rule-validation)
+  * [Make More Advanced Rule Validation](#make-more-advanced-rule-validation)
+* [Available Rules](#available-rules)
+  * [required](#required)
+  * [fileExists](#fileexistspathprefix-string)
+  * [isArray](#isarray)
+  * [isBool](#isbool)
+  * [isEmail](#isemail)
+  * [isFloat](#isfloat)
+  * [isIn](#isinallowedvalues-primitivetypes)
+  * [isInt](#isint)
+  * [isNumber](#isnumber)
+  * [isNumeric](#isnumeric)
+  * [isString](#isstring)
+  * [lengthBetween](#lengthbetweenminlength-number-maxlength-number)
+  * [match](#matchregex-regexp-trim-boolean--false)
+  * [maxLength](#maxlengthminvalue-number)
+  * [maxNumber](#maxnumbermaxvalue-number)
+  * [minLength](#minlengthminvalue-number)
+  * [minNumber](#minnumberminvalue-number)
+  * [notIn](#notindisallowedvalues-primitivetypes)
+  * [notNull](#notnull)
+  * [numbetBetween](#numberbetweenminvalue-number-maxvalue-number)
+
 ## Examples
 
 #### Basic Usage
