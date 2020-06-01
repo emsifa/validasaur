@@ -1,4 +1,4 @@
-import { ValidationResult, Rule, RuleReturn } from "./types.ts";
+import { ValidationResult, Rule, Validity } from "./types.ts";
 import {
   ValidationRules,
   ValidationOptions,

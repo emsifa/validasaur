@@ -1,4 +1,4 @@
-import { Rule, RuleReturn } from "./types.ts";
+import { Rule, Validity } from "./types.ts";
 
 export interface ValidationRules {
   [key: string]: Rule | Rule[];

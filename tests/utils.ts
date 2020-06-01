@@ -1,9 +1,9 @@
-import { RuleReturn } from "../src/types.ts";
+import { Validity } from "../src/types.ts";
 import { InvalidPayload } from "../src/interfaces.ts";
 import { assertEquals, assertNotEquals } from "./deps.ts";
 
 export const assertInvalid = (
-  result: RuleReturn,
+  result: Validity,
   payload: InvalidPayload,
   message?: string,
 ): void => {
@@ -19,6 +19,6 @@ export const assertInvalid = (
   }
 };
 
-export const assertValid = (result: RuleReturn, message?: string): void => {
+export const assertValid = (result: Validity, message?: string): void => {
   assertEquals(result, undefined, message || "Result should be valid");
 };

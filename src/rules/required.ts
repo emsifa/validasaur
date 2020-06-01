@@ -1,7 +1,7 @@
 import { invalid, isOptionalValue } from "../utils.ts";
-import { RuleReturn } from "../types.ts";
+import { Validity } from "../types.ts";
 
-export function required(value: any): RuleReturn {
+export function required(value: any): Validity {
   return isOptionalValue(value)
     ? invalid("required", { value }, true)
     : undefined;

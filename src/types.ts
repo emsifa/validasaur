@@ -2,9 +2,9 @@ import { ValidationErrors, InvalidPayload } from "./interfaces.ts";
 
 export type OptionalValue = null | undefined | "";
 
-export type RuleReturn = InvalidPayload | undefined;
+export type Validity = InvalidPayload | undefined;
 
-export type Rule = (value: any) => RuleReturn | Promise<RuleReturn>;
+export type Rule = (value: any) => Validity | Promise<Validity>;
 
 export type ValidationResult = [boolean, ValidationErrors];
 

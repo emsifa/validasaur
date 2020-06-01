@@ -226,9 +226,9 @@ In this example we will make a `isOdd` rule validation that check odd number.
 First, let's make `is_odd.ts` like this:
 
 ```ts
-import { invalid, RuleReturn } from "https://deno.land/x/validasaur/src/mod.ts";
+import { invalid, Validity } from "https://deno.land/x/validasaur/src/mod.ts";
 
-export function isOdd(value: any): RuleReturn {
+export function isOdd(value: any): Validity {
   if (typeof value !== "number") {
     return invalid("isOdd", { value });
   }
@@ -267,10 +267,10 @@ First, let's make our `unique.ts`:
 
 ```ts
 import db from "./your_db_service.ts";
-import { invalid, RuleReturn, Rule } from "https://deno.land/x/validasaur/src/mod.ts";
+import { invalid, Validity, Rule } from "https://deno.land/x/validasaur/src/mod.ts";
 
 export function unique(table: string, column: string): Rule {
-  return async function uniqueRule(value: any): Promise<RuleReturn> {
+  return async function uniqueRule(value: any): Promise<Validity> {
     if (typeof value !== "string" || typeof value !== "number") {
       return invalid("unique", { value, table, column });
     }

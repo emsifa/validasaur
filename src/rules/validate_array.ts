@@ -1,5 +1,5 @@
 import { invalid, isOptionalValue } from "../utils.ts";
-import { RuleReturn, Rule } from "../types.ts";
+import { Validity, Rule } from "../types.ts";
 import { isNumber } from "./is_number.ts";
 import { required } from "./required.ts";
 import {
@@ -14,7 +14,7 @@ import { validateData, validateValue } from "../validate.ts";
 export function validateArray(isRequired: boolean, rules: Rule[]): Rule[] {
   return [
     ...(isRequired ? [required] : []),
-    async function ruleArray(value: any): Promise<RuleReturn> {
+    async function ruleArray(value: any): Promise<Validity> {
       if (isRequired === true && isOptionalValue(value)) {
         return;
       }

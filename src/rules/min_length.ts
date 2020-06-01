@@ -1,8 +1,8 @@
 import { invalid } from "../utils.ts";
-import { RuleReturn, Rule } from "../types.ts";
+import { Validity, Rule } from "../types.ts";
 
 export function minLength(minValue: number): Rule {
-  return function minLengthRule(value: any): RuleReturn {
+  return function minLengthRule(value: any): Validity {
     if (typeof value !== "string") {
       return invalid("minLength", { value, minValue }, false);
     }

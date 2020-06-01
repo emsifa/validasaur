@@ -1,7 +1,7 @@
 import { fileExists } from "../../src/rules/file_exists.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid } from "../utils.ts";
-import { RuleReturn } from "../../src/types.ts";
+import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.fileExists('')(123) should be invalid", async () => {
   assertInvalid(

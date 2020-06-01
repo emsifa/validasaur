@@ -1,7 +1,7 @@
 import { invalid } from "../utils.ts";
-import { RuleReturn } from "../types.ts";
+import { Validity } from "../types.ts";
 
-export function isNumber(value: any): RuleReturn {
+export function isNumber(value: any): Validity {
   if (typeof value !== "number") {
     return invalid("isNumber", { value });
   }

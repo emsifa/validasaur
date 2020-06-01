@@ -1,5 +1,5 @@
 import { invalid, isOptionalValue } from "../utils.ts";
-import { RuleReturn, Rule } from "../types.ts";
+import { Validity, Rule } from "../types.ts";
 import { isNumber } from "./is_number.ts";
 import { required } from "./required.ts";
 import { ValidationRules, InputData } from "../interfaces.ts";
@@ -11,7 +11,7 @@ export function validateObject(
 ): Rule[] {
   return [
     ...(isRequired ? [required] : []),
-    async function ruleObject(value: any): Promise<RuleReturn> {
+    async function ruleObject(value: any): Promise<Validity> {
       if (isRequired === true && isOptionalValue(value)) {
         return;
       }

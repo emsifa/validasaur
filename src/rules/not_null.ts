@@ -1,6 +1,6 @@
 import { invalid } from "../utils.ts";
-import { RuleReturn } from "../types.ts";
+import { Validity } from "../types.ts";
 
-export function notNull(value: any): RuleReturn {
+export function notNull(value: any): Validity {
   return (value === null) ? invalid("notNull", { value }, true) : undefined;
 }
