@@ -6,7 +6,12 @@ import {
   InputData,
   InvalidPayload,
 } from "./interfaces.ts";
-import { isOptional, isOptionalValue, resolveErrorMessages } from "./utils.ts";
+import {
+  isOptional,
+  isOptionalValue,
+  resolveErrorMessages,
+  isNullable,
+} from "./utils.ts";
 import { defaultMessages } from "./messages.ts";
 
 const getValue = (input: InputData, key: string): any => {
@@ -18,6 +23,10 @@ export const validateValue = async (
   rules: Rule[],
 ): Promise<InvalidPayload[]> => {
   if (isOptionalValue(value) && isOptional(rules)) {
+    return [];
+  }
+
+  if (typeof value === "object" && value === null && isNullable(rules)) {
     return [];
   }
 

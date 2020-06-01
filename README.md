@@ -37,7 +37,8 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
   * [minNumber](#minnumberminvalue-number)
   * [notIn](#notindisallowedvalues-primitivetypes)
   * [notNull](#notnull)
-  * [numbetBetween](#numberbetweenminvalue-number-maxvalue-number)
+  * [nullable](#nullable)
+  * [numberBetween](#numberbetweenminvalue-number-maxvalue-number)
 
 ## Examples
 
@@ -345,6 +346,8 @@ Value under this field should not be `null`, `undefined`, or an empty string (`"
 * Invalid values: `null`, `undefined`, `""`
 * Valid values: `"0"`, `[]`, `{}`, `0`, etc.
 
+> When you don't put `required` on a field, that field will be considered as optional field. Which means when it's value is `undefined`, `null`, or `""`, that field will be considered as valid without checking for next rules.
+
 #### `fileExists(pathPrefix: string)`
 
 Value under this field must be existed file.
@@ -579,6 +582,47 @@ const [ passes, errors ] = await validate({
 #### `notNull`
 
 Value under this field must not be `null`.
+
+#### `nullable`
+
+In case you need a `required` field that accept `null` value,
+you can put `nullable` after `required` field. So when the value is `null`, validator will consider your value as valid without checking for next rules.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: 1,
+  value2: 4.99,
+  value3: 5,
+  value4: 5.01,
+}, {
+  value1: minNumber(5), // fail
+  value2: minNumber(5), // fail
+  value3: minNumber(5), // passes
+  value4: minNumber(5), // passes
+})
+```
+
+#### `notIn(disallowedValues: PrimitiveTypes[])`
+
+Value under this field must not be one of disallowed values.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: null,
+  value3: "3",
+  value4: 4,
+}, {
+  value1: [required, isNumber],           // failed on required
+  value2: [required, nullable, isNumber], // passes
+  value3: [required, nullable, isNumber], // failed on isNumber
+  value4: [required, nullable, isNumber], // passes
+})
+```
 
 #### `numberBetween(minValue: number, maxValue: number)`
 

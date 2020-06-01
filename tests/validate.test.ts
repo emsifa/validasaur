@@ -7,6 +7,7 @@ import {
   isString,
   validateArray,
   validateObject,
+  nullable,
 } from "../src/rules.ts";
 import {
   InputData,
@@ -79,6 +80,14 @@ const advancedExample = (): {
 
 Deno.test("validateValue() on empty value with non-required rules should be passes", async () => {
   const errs = await validateValue(null, [isString, isNumber, isInt]);
+  assertEquals(errs.length, 0);
+});
+
+Deno.test("validateValue() on null value with nullable rules should be passes", async () => {
+  const errs = await validateValue(
+    null,
+    [required, nullable, isString, isNumber, isInt],
+  );
   assertEquals(errs.length, 0);
 });
 

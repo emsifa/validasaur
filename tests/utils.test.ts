@@ -1,6 +1,6 @@
 import * as utils from "../src/utils.ts";
 import { assertEquals, assertNotEquals } from "./deps.ts";
-import { required, isNumber, isInt, isIn } from "../src/rules.ts";
+import { required, isNumber, isInt, isIn, nullable } from "../src/rules.ts";
 import { ValidationErrors, RawValidationResult } from "../src/interfaces.ts";
 
 const sampleErrorMessages = (): ValidationErrors => ({
@@ -47,6 +47,19 @@ Deno.test("utils.invalid()", () => {
     },
     implicit: true,
   });
+});
+
+Deno.test("utils.isNullable()", () => {
+  assertEquals(
+    utils.isNullable([required, nullable, isNumber, isInt, isIn([1, 2, 3])]),
+    true,
+    `isNullable should be true when there is nullable rule`,
+  );
+  assertEquals(
+    utils.isNullable([required, isNumber, isInt, isIn([1, 2, 3])]),
+    false,
+    `isNullable should be false when there is no nullable rule`,
+  );
 });
 
 Deno.test("utils.isOptional()", () => {

@@ -10,6 +10,7 @@ import {
   ValidationMessages,
 } from "./interfaces.ts";
 import { required } from "./rules/required.ts";
+import { nullable } from "./rules/nullable.ts";
 
 export function invalid(
   rule: string,
@@ -17,6 +18,10 @@ export function invalid(
   implicit = false,
 ): InvalidPayload {
   return { rule, params, implicit };
+}
+
+export function isNullable(rules: Rule[]): boolean {
+  return rules.find((rule: Rule) => rule === nullable) ? true : false;
 }
 
 export function isOptional(rules: Rule[]): boolean {
