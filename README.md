@@ -254,7 +254,7 @@ Result:
 
 #### Make Your own Simple Rule Validation
 
-In this example we will make a `isOdd` rule validation that check odd number.
+In this example we will make an `isOdd` rule validation that check odd number.
 
 First, let's make `is_odd.ts` like this:
 
