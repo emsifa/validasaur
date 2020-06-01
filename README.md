@@ -219,6 +219,89 @@ Result:
 }
 ```
 
+#### Make Your own Simple Rule Validation
+
+In this example we will make a `isOdd` rule validation that check odd number.
+
+First, let's make `is_odd.ts` like this:
+
+```ts
+import { invalid, RuleReturn } from "https://deno.land/x/validasaur/src/mod.ts";
+
+export function isOdd(value: any): RuleReturn {
+  if (typeof value !== "number") {
+    return invalid("isOdd", { value });
+  }
+
+  if (value % 2 !== 1) {
+    return invalid("isOdd", { value });
+  }
+}
+
+```
+
+Now, we can use it like this:
+
+```ts
+import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
+import { isOdd } from "./is_odd.ts";
+
+const inputs = {
+  number: 20
+};
+
+const [ passes, errors ] = await validate(inputs, {
+  number: [required, isNumber, isOdd]
+});
+
+console.log({ passes, errors });
+```
+
+#### Make More Advanced Rule Validation
+
+In this example we will make a `unique` rule that check value availability in the database.
+This rule accepts `table` and `column` as arguments, then calling database function to check availability based on those arguments.
+
+First, let's make our `unique.ts`:
+
+```ts
+import db from "./your_db_service.ts";
+import { invalid, RuleReturn, Rule } from "https://deno.land/x/validasaur/src/mod.ts";
+
+export function unique(table: string, column: string): Rule {
+  return async function uniqueRule(value: any): Promise<RuleReturn> {
+    if (typeof value !== "string" || typeof value !== "number") {
+      return invalid("unique", { value, table, column });
+    }
+
+    const data = await db.findOne(table, { [column]: value });
+    if (data) {
+      return invalid("unique", { value, table, column });
+    }
+  };
+}
+
+```
+
+Now we can use it like this:
+
+```ts
+import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import { required, isEmail } from "https://deno.land/x/validasaur/src/rules.ts";
+import { unique } from "./unique.ts";
+
+const inputs = {
+  email: "emsifa@gmail.com"
+};
+
+const [ passes, errors ] = await validate(inputs, {
+  email: [required, isEmail, unique("users", "email")]
+});
+
+console.log({ passes, errors });
+```
+
 ## Available Rules
 
 #### `required`
