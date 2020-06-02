@@ -622,6 +622,64 @@ const [ passes, errors ] = await validate({
 })
 ```
 
+#### `requiredIf(field: string, fieldValue: any)`
+
+Field within this rule will be required if given `field` match `fieldValue`.
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: "2",
+  value3: null,
+  otherField: 1,
+}, {
+  value1: [requiredIf('otherField', 1), isNumber], // failed at required
+  value2: [requiredIf('otherField', 1), isNumber], // failed at isNumber
+  value3: [requiredIf('otherField', 0), isNumber], // passes because value3 becomes optional
+})
+```
+
+#### `requiredUnless(field: string, fieldValue: any)`
+
+Field within this rule will be required if given `field` doesn't match with `fieldValue`.
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: "2",
+  value3: null,
+  otherField: 1,
+}, {
+  value1: [requiredUnless('otherField', 9), isNumber], // failed at required
+  value2: [requiredUnless('otherField', 6), isNumber], // failed at isNumber
+  value3: [requiredUnless('otherField', 1), isNumber], // passes because value3 becomes optional
+})
+```
+
+#### `requiredWhen(callback: (value: any, utils: ValidationUtils) => boolean|Promise<boolean>)`
+
+Field within this rule will be required if callback returns `true`.
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: "2",
+  value3: null,
+  value4: null,
+  otherField: 10,
+}, {
+  value1: [requiredWhen(() => true), isNumber], // failed at required
+  value2: [requiredWhen(() => true), isNumber], // failed at isNumber
+  value3: [requiredWhen(() => false), isNumber], // passes because value3 becomes optional
+  value4: [
+    requiredWhen((_, { getValue }): boolean => {
+      const x = getValue('otherField');
+      return typeof x !== "number" || x % 2 === 0;
+    }),
+    isNumber
+  ], // this will fail because value4 is null and otherField|x is 10 where 10 % 2 === 0
+})
+```
 
 ## TODOS
 
