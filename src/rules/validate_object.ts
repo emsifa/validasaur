@@ -2,7 +2,7 @@ import { invalid, isOptionalValue } from "../utils.ts";
 import { Validity, Rule } from "../types.ts";
 import { isNumber } from "./is_number.ts";
 import { required } from "./required.ts";
-import { ValidationRules, InputData } from "../interfaces.ts";
+import { ValidationRules, InputData, ValidationUtils } from "../interfaces.ts";
 import { validateData } from "../validate.ts";
 
 export function validateObject(
@@ -11,7 +11,10 @@ export function validateObject(
 ): Rule[] {
   return [
     ...(isRequired ? [required] : []),
-    async function ruleObject(value: any): Promise<Validity> {
+    async function ruleObject(
+      value: any,
+      utils: ValidationUtils,
+    ): Promise<Validity> {
       if (isRequired === true && isOptionalValue(value)) {
         return;
       }

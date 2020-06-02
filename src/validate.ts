@@ -5,12 +5,14 @@ import {
   RawValidationResult,
   InputData,
   InvalidPayload,
+  ValidationUtils,
 } from "./interfaces.ts";
 import {
   isOptional,
   isOptionalValue,
   resolveErrorMessages,
   isNullable,
+  makeValidationUtils,
 } from "./utils.ts";
 import { defaultMessages } from "./messages.ts";
 
@@ -21,6 +23,7 @@ const getValue = (input: InputData, key: string): any => {
 export const validateValue = async (
   value: any,
   rules: Rule[],
+  utils: ValidationUtils,
 ): Promise<InvalidPayload[]> => {
   if (isOptionalValue(value) && isOptional(rules)) {
     return [];
@@ -32,7 +35,7 @@ export const validateValue = async (
 
   const results = [];
   for (let rule of rules) {
-    let res = rule(value);
+    let res = rule(value, utils);
     if (res instanceof Promise) {
       res = await res;
     }
@@ -52,12 +55,17 @@ export const validateData = async (
   rules: ValidationRules,
 ): Promise<RawValidationResult> => {
   const results: RawValidationResult = {};
+  const utils: ValidationUtils = makeValidationUtils(input);
   for (let key in rules) {
     const keyRules = (rules[key] instanceof Array
       ? rules[key]
       : [rules[key]]) as Rule[];
     const value: any = getValue(input, key);
-    const errors: InvalidPayload[] = await validateValue(value, keyRules);
+    const errors: InvalidPayload[] = await validateValue(
+      value,
+      keyRules,
+      utils,
+    );
     if (errors.length) {
       results[key] = errors;
     }

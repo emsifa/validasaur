@@ -8,13 +8,17 @@ import {
   InvalidParams,
   InvalidPayload,
   RawValidationResult,
+  ValidationUtils,
 } from "../interfaces.ts";
 import { validateData, validateValue } from "../validate.ts";
 
 export function validateArray(isRequired: boolean, rules: Rule[]): Rule[] {
   return [
     ...(isRequired ? [required] : []),
-    async function ruleArray(value: any): Promise<Validity> {
+    async function ruleArray(
+      value: any,
+      utils: ValidationUtils,
+    ): Promise<Validity> {
       if (isRequired === true && isOptionalValue(value)) {
         return;
       }
@@ -25,7 +29,7 @@ export function validateArray(isRequired: boolean, rules: Rule[]): Rule[] {
 
       const errors: RawValidationResult = {};
       for (let i in value) {
-        const errs = await validateValue(value[i], rules);
+        const errs = await validateValue(value[i], rules, utils);
         if (errs.length) {
           errors[i.toString()] = [...errs];
         }

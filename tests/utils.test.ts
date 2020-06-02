@@ -1,7 +1,11 @@
 import * as utils from "../src/utils.ts";
 import { assertEquals, assertNotEquals } from "./deps.ts";
 import { required, isNumber, isInt, isIn, nullable } from "../src/rules.ts";
-import { ValidationErrors, RawValidationResult } from "../src/interfaces.ts";
+import {
+  ValidationErrors,
+  RawValidationResult,
+  InputData,
+} from "../src/interfaces.ts";
 
 const sampleErrorMessages = (): ValidationErrors => ({
   "x": {
@@ -341,4 +345,112 @@ Deno.test("utils.resolveErrorMessages()", () => {
       },
     },
   });
+});
+
+Deno.test("utils.isStringInt", () => {
+  assertEquals(utils.isStringInt("123"), true, "'123' should be string int");
+  assertEquals(
+    utils.isStringInt("12a"),
+    false,
+    "'12a' shouldn't be string int",
+  );
+  assertEquals(
+    utils.isStringInt("a12"),
+    false,
+    "'a12' shouldn't be string int",
+  );
+  assertEquals(
+    utils.isStringInt("12.5"),
+    false,
+    "'12.5' shouldn't be string int",
+  );
+  assertEquals(utils.isStringInt("0.1"), false, "'0.1' should't be string int");
+  assertEquals(utils.isStringInt(".1"), false, "'.1' shouldn't be string int");
+});
+
+Deno.test("utils.getValue", () => {
+  const data: InputData = {
+    str: "foo",
+    obj: {
+      str: "bar",
+    },
+    num: 12,
+    empty: null,
+    arrObj: [
+      {
+        str: "baz",
+      },
+      {
+        str: "qux",
+      },
+    ],
+  };
+
+  assertEquals(utils.getValue(data, "str"), "foo", "data.str shouldbe 'foo'");
+  assertEquals(
+    utils.getValue(data, "obj"),
+    { str: "bar" },
+    "data.obj should be {str: 'bar'}",
+  );
+  assertEquals(
+    utils.getValue(data, "obj.str"),
+    "bar",
+    "data.obj.str should be 'bar'",
+  );
+  assertEquals(
+    utils.getValue(data, "obj.nothing"),
+    undefined,
+    "data.obj.nothing should be undefined",
+  );
+  assertEquals(
+    utils.getValue(data, "obj.1.x"),
+    undefined,
+    "data.1.x should be undefined",
+  );
+  assertEquals(utils.getValue(data, "num"), 12, "data.num should be 12");
+  assertEquals(
+    utils.getValue(data, "num.nothing"),
+    undefined,
+    "data.num.nothing should be undefined",
+  );
+  assertEquals(
+    utils.getValue(data, "empty"),
+    null,
+    "data.empty should be null",
+  );
+  assertEquals(
+    utils.getValue(data, "empty.nothing"),
+    undefined,
+    "data.empty.nothing should be undefined",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.0"),
+    { str: "baz" },
+    "arrObj.0 should be {str: 'baz'}",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.0.str"),
+    "baz",
+    "arrObj.0.str should be 'baz'",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.1"),
+    { str: "qux" },
+    "arrObj.1 should be {str: 'qux'}",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.1.str"),
+    "qux",
+    "arrObj.1.str should be 'qux'",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.nothing"),
+    undefined,
+    "arrObj.nothing should be undefined",
+  );
+  assertEquals(
+    utils.getValue(data, "arrObj.2"),
+    undefined,
+    "arrObj.2 should be undefined",
+  );
 });

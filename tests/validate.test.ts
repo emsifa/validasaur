@@ -16,6 +16,7 @@ import {
   ValidationErrors,
 } from "../src/interfaces.ts";
 import { invalid } from "../src/utils.ts";
+import { fakeUtils } from "./utils.ts";
 
 const advancedExample = (): {
   input: InputData;
@@ -79,7 +80,11 @@ const advancedExample = (): {
 };
 
 Deno.test("validateValue() on empty value with non-required rules should be passes", async () => {
-  const errs = await validateValue(null, [isString, isNumber, isInt]);
+  const errs = await validateValue(
+    null,
+    [isString, isNumber, isInt],
+    fakeUtils,
+  );
   assertEquals(errs.length, 0);
 });
 
@@ -87,23 +92,36 @@ Deno.test("validateValue() on null value with nullable rules should be passes", 
   const errs = await validateValue(
     null,
     [required, nullable, isString, isNumber, isInt],
+    fakeUtils,
   );
   assertEquals(errs.length, 0);
 });
 
 Deno.test("validateValue() on empty value with required rules should be error", async () => {
-  const errs = await validateValue(null, [required, isString, isNumber, isInt]);
+  const errs = await validateValue(
+    null,
+    [required, isString, isNumber, isInt],
+    fakeUtils,
+  );
   assertEquals(errs.length, 1);
 });
 
 Deno.test("validateValue() on implicit rule should returns only 1 error message", async () => {
-  const errs = await validateValue(null, [required, isNumber, isInt]);
+  const errs = await validateValue(
+    null,
+    [required, isNumber, isInt],
+    fakeUtils,
+  );
   assertEquals(errs.length, 1);
   assertEquals(errs[0].rule, "required");
 });
 
 Deno.test("validateValue() on non-implicit rule should returns all error message", async () => {
-  const errs = await validateValue("text", [isString, isNumber, isInt]);
+  const errs = await validateValue(
+    "text",
+    [isString, isNumber, isInt],
+    fakeUtils,
+  );
   assertEquals(errs.length, 2);
   assertEquals(errs[0].rule, "isNumber");
   assertEquals(errs[1].rule, "isInt");
