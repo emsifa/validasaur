@@ -1,5 +1,5 @@
 import { Validity } from "../src/types.ts";
-import { InvalidPayload } from "../src/interfaces.ts";
+import { InvalidPayload, ValidationUtils } from "../src/interfaces.ts";
 import { assertEquals, assertNotEquals } from "./deps.ts";
 
 export const assertInvalid = (
@@ -21,4 +21,9 @@ export const assertInvalid = (
 
 export const assertValid = (result: Validity, message?: string): void => {
   assertEquals(result, undefined, message || "Result should be valid");
+};
+
+export const fakeUtils: ValidationUtils = {
+  getValue: (key: string): any => undefined,
+  hasValue: (key: string): boolean => false,
 };

@@ -8,6 +8,8 @@ import {
   RawValidationResult,
   ValidationOptions,
   ValidationMessages,
+  InputData,
+  ValidationUtils,
 } from "./interfaces.ts";
 import { required } from "./rules/required.ts";
 import { nullable } from "./rules/nullable.ts";
@@ -148,4 +150,38 @@ export const resolveErrorMessages = (
     }
   }
   return errorMessages;
+};
+
+export const isStringInt = (value: string): boolean => {
+  return value.match(/^\d+$/) ? true : false;
+};
+
+export const getValue = (input: InputData, key: string): any => {
+  if (typeof input[key] !== "undefined") {
+    return input[key];
+  }
+
+  const paths = key.split(".");
+  const value = paths.reduce((data: any, path: string): any => {
+    if (data && typeof data === "object") {
+      return data[path];
+    } else if (data instanceof Array && isStringInt(path)) {
+      const index = parseInt(path);
+      return data[index];
+    }
+  }, { ...input });
+
+  return value;
+};
+
+export const hasValue = (input: InputData, key: string): boolean => {
+  const value = getValue(input, key);
+  return typeof value !== "undefined";
+};
+
+export const makeValidationUtils = (input: InputData): ValidationUtils => {
+  return {
+    getValue: (key: string): any => getValue(input, key),
+    hasValue: (key: string): boolean => hasValue(input, key),
+  };
 };

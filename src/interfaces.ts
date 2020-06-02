@@ -22,6 +22,11 @@ export interface ValidationMessages {
   [key: string]: string;
 }
 
+export interface ValidationUtils {
+  getValue(key: string): any;
+  hasValue(key: string): boolean;
+}
+
 export interface ValidationAttributes {
   [key: string]: string;
 }
