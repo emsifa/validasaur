@@ -20,7 +20,10 @@ Deno.test("rules.requiredWhen((_, { getValue }) => getValue('x') == 1)(null, { x
   });
 
   assertInvalid(
-    await requiredWhen((_, { getValue }) => getValue('x') == 1)(null, utils) as Validity,
+    await requiredWhen((_, { getValue }) => getValue("x") == 1)(
+      null,
+      utils,
+    ) as Validity,
     invalid("required", { value: null }, true),
   );
 });
@@ -30,5 +33,10 @@ Deno.test("rules.requiredWhen((_, { getValue }) => getValue('x') == 1)(25, { x: 
     x: "1",
   });
 
-  assertValid(await requiredWhen((_, { getValue }) => getValue('x') == 1)(25, utils) as Validity);
+  assertValid(
+    await requiredWhen((_, { getValue }) => getValue("x") == 1)(
+      25,
+      utils,
+    ) as Validity,
+  );
 });
