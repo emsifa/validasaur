@@ -18,6 +18,8 @@ export * from "./rules/not_null.ts";
 export * from "./rules/nullable.ts";
 export * from "./rules/number_between.ts";
 export * from "./rules/match.ts";
+export * from "./rules/required_if.ts";
+export * from "./rules/required_unless.ts";
 export * from "./rules/required.ts";
 export * from "./rules/validate_array.ts";
 export * from "./rules/validate_object.ts";
