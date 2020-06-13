@@ -42,7 +42,10 @@ export function firstMessages(messages: ValidationErrors): FirstMessages {
     const firstRule = ruleNames[0];
     const firstMessage = messages[key][firstRule];
 
-    if (firstRule === "validateObject" || firstRule === "validateArray") {
+    if (
+      (firstRule === "validateObject" || firstRule === "validateArray") &&
+      typeof firstMessage !== "string"
+    ) {
       results[key] = firstMessages(firstMessage as ValidationErrors);
     } else {
       results[key] = firstMessage;
@@ -106,9 +109,14 @@ export const findBestMessage = (
   ruleKey: string,
   defaultMessage: string,
 ): string => {
-  return messages[`${key}.${ruleName}`] || messages[`${key}.${ruleKey}`] ||
+  return (
+    messages[`${key}.${ruleName}`] ||
+    messages[`${key}.${ruleKey}`] ||
     messages[key] ||
-    messages[ruleName] || messages[ruleKey] || defaultMessage;
+    messages[ruleName] ||
+    messages[ruleKey] ||
+    defaultMessage
+  );
 };
 
 export const resolveErrorMessages = (
@@ -124,15 +132,15 @@ export const resolveErrorMessages = (
     for (let err of errs) {
       const ruleKey = err.rule.replace(/\:\w+$/, "");
       if (err.rule === "validateObject" && err.params.errors) {
-        errorMessages[key][ruleKey] = resolveErrorMessages(
-          err.params.errors,
-          { messages, attributes },
-        );
+        errorMessages[key][ruleKey] = resolveErrorMessages(err.params.errors, {
+          messages,
+          attributes,
+        });
       } else if (err.rule === "validateArray" && err.params.errors) {
-        errorMessages[key][ruleKey] = resolveErrorMessages(
-          err.params.errors,
-          { messages, attributes },
-        );
+        errorMessages[key][ruleKey] = resolveErrorMessages(err.params.errors, {
+          messages,
+          attributes,
+        });
       } else {
         const msg = findBestMessage(
           messages || {},
@@ -162,14 +170,17 @@ export const getValue = (input: InputData, key: string): any => {
   }
 
   const paths = key.split(".");
-  const value = paths.reduce((data: any, path: string): any => {
-    if (data && typeof data === "object") {
-      return data[path];
-    } else if (data instanceof Array && isStringInt(path)) {
-      const index = parseInt(path);
-      return data[index];
-    }
-  }, { ...input });
+  const value = paths.reduce(
+    (data: any, path: string): any => {
+      if (data && typeof data === "object") {
+        return data[path];
+      } else if (data instanceof Array && isStringInt(path)) {
+        const index = parseInt(path);
+        return data[index];
+      }
+    },
+    { ...input },
+  );
 
   return value;
 };
