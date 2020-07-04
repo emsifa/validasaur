@@ -9,36 +9,43 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
 
 ## Table of Contents
 
-* [Examples](#examples)
-  * [Basic Usage](#basic-usage)
-  * [Formatting Errors](#formatting-errors)
-  * [Custom Error message](#custom-error-message)
-  * [Validating Array and Object](#validating-array-and-object)
-  * [Make Your own Simple Rule Validation](#make-your-own-simple-rule-validation)
-  * [Make More Advanced Rule Validation](#make-more-advanced-rule-validation)
-* [Available Rules](#available-rules)
-  * [required](#required)
-  * [fileExists](#fileexistspathprefix-string)
-  * [isArray](#isarray)
-  * [isBool](#isbool)
-  * [isDate](#isdate)
-  * [isEmail](#isemail)
-  * [isFloat](#isfloat)
-  * [isIn](#isinallowedvalues-primitivetypes)
-  * [isInt](#isint)
-  * [isNumber](#isnumber)
-  * [isNumeric](#isnumeric)
-  * [isString](#isstring)
-  * [lengthBetween](#lengthbetweenminlength-number-maxlength-number)
-  * [match](#matchregex-regexp-trim-boolean--false)
-  * [maxLength](#maxlengthminvalue-number)
-  * [maxNumber](#maxnumbermaxvalue-number)
-  * [minLength](#minlengthminvalue-number)
-  * [minNumber](#minnumberminvalue-number)
-  * [notIn](#notindisallowedvalues-primitivetypes)
-  * [notNull](#notnull)
-  * [nullable](#nullable)
-  * [numberBetween](#numberbetweenminvalue-number-maxvalue-number)
+- [Table of Contents](#table-of-contents)
+- [Examples](#examples)
+    - [Basic Usage](#basic-usage)
+    - [Formatting Errors](#formatting-errors)
+    - [Custom Error Message](#custom-error-message)
+    - [Validating Array and Object](#validating-array-and-object)
+    - [Make Your own Simple Rule Validation](#make-your-own-simple-rule-validation)
+    - [Make More Advanced Rule Validation](#make-more-advanced-rule-validation)
+- [Available Rules](#available-rules)
+    - [`required`](#required)
+    - [`endsWith(str: string)`](#endswithstr-string)
+    - [`fileExists(pathPrefix: string)`](#fileexistspathprefix-string)
+    - [`isArray`](#isarray)
+    - [`isBool`](#isbool)
+    - [`isDate`](#isdate)
+    - [`isEmail`](#isemail)
+    - [`isFloat`](#isfloat)
+    - [`isIn(allowedValues: PrimitiveTypes[])`](#isinallowedvalues-primitivetypes)
+    - [`isInt`](#isint)
+    - [`isNumber`](#isnumber)
+    - [`isNumeric`](#isnumeric)
+    - [`isString`](#isstring)
+    - [`lengthBetween(minLength: number, maxLength: number)`](#lengthbetweenminlength-number-maxlength-number)
+    - [`match(regex: RegExp, trim: boolean = false)`](#matchregex-regexp-trim-boolean--false)
+    - [`maxLength(minValue: number)`](#maxlengthminvalue-number)
+    - [`maxNumber(maxValue: number)`](#maxnumbermaxvalue-number)
+    - [`minLength(minValue: number)`](#minlengthminvalue-number)
+    - [`minNumber(minValue: number)`](#minnumberminvalue-number)
+    - [`notIn(disallowedValues: PrimitiveTypes[])`](#notindisallowedvalues-primitivetypes)
+    - [`notNull`](#notnull)
+    - [`nullable`](#nullable)
+    - [`numberBetween(minValue: number, maxValue: number)`](#numberbetweenminvalue-number-maxvalue-number)
+    - [`requiredIf(field: string, fieldValue: any)`](#requirediffield-string-fieldvalue-any)
+    - [`requiredUnless(field: string, fieldValue: any)`](#requiredunlessfield-string-fieldvalue-any)
+    - [`requiredWhen(callback: (value: any, utils: ValidationUtils) => boolean|Promise<boolean>)`](#requiredwhencallback-value-any-utils-validationutils--booleanpromiseboolean)
+    - [`startsWith(str: string)`](#startswithstr-string)
+- [TODOS](#todos)
 
 ## Examples
 
@@ -347,6 +354,24 @@ Value under this field should not be `null`, `undefined`, or an empty string (`"
 * Valid values: `"0"`, `[]`, `{}`, `0`, etc.
 
 > When you don't put `required` on a field, that field will be considered as optional field. Which means when it's value is `undefined`, `null`, or `""`, that field will be considered as valid without checking for next rules.
+
+#### `endsWith(str: string)`
+
+Value under this field must be a string that ends with given `str`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: "barfoo",
+  value3: "foobar"
+}, {
+  value1: endsWith("bar"), // invalid
+  value2: endsWith("bar"), // invalid
+  value3: endsWith("bar"), // valid
+})
+```
 
 #### `fileExists(pathPrefix: string)`
 
@@ -681,12 +706,28 @@ const [ passes, errors ] = await validate({
 })
 ```
 
+#### `startsWith(str: string)`
+
+Value under this field must be a string that starts with given `str`.
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: null,
+  value2: "barfoo",
+  value3: "foobar"
+}, {
+  value1: startsWith("foo"), // invalid
+  value2: startsWith("foo"), // invalid
+  value3: startsWith("foo"), // valid
+})
+```
+
 ## TODOS
 
 * [ ] `isUrl` rule.
 * [ ] `isIpAddress` rule.
 * [ ] `isIpv4` rule.
 * [ ] `isIpv6` rule.
-* [ ] `startsWith` rule to check string prefix.
-* [ ] `endsWith` rule to check string postfix.
 * [ ] add more examples to documentation.
