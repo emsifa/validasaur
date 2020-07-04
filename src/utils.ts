@@ -1,4 +1,4 @@
-import { Rule } from "./types.ts";
+import { Rule, MessageFunction } from "./types.ts";
 import {
   InvalidParams,
   InvalidPayload,
@@ -89,17 +89,29 @@ export function flattenMessages(
 }
 
 export const resolveErrorMessage = (
-  msg: string,
+  msg: string | MessageFunction,
   params: InvalidParams,
   attr: string,
+  checkType?: string,
 ): string => {
   params.attr = attr;
 
-  for (let key in params) {
-    msg = msg.replace(`:${key}`, params[key] as string);
-  }
+  if (typeof msg === "function") {
+    return msg(params, checkType || "");
+  } else {
+    for (let key in params) {
+      msg = msg.replace(`:${key}`, params[key] as string);
+    }
 
-  return msg;
+    return msg;
+  }
+};
+
+export const getCheckType = (rule: string): string => {
+  const split = rule.split(":");
+  split.shift();
+
+  return split.join(":");
 };
 
 export const findBestMessage = (
@@ -107,8 +119,8 @@ export const findBestMessage = (
   key: string,
   ruleName: string,
   ruleKey: string,
-  defaultMessage: string,
-): string => {
+  defaultMessage: string | MessageFunction,
+): string | MessageFunction => {
   return (
     messages[`${key}.${ruleName}`] ||
     messages[`${key}.${ruleKey}`] ||
@@ -128,9 +140,17 @@ export const resolveErrorMessages = (
   for (let key in rawErrors) {
     const errs = rawErrors[key] as InvalidPayload[];
     const attr = (attributes || {})[key] || key;
+
     errorMessages[key] = {} as { [k: string]: string };
+
     for (let err of errs) {
-      const ruleKey = err.rule.replace(/\:\w+$/, "");
+      const checkType = getCheckType(err.rule);
+
+      // Remove checkType from err.rule
+      const ruleKey = checkType
+        ? err.rule.substr(0, err.rule.length - checkType.length - 1)
+        : err.rule;
+
       if (err.rule === "validateObject" && err.params.errors) {
         errorMessages[key][ruleKey] = resolveErrorMessages(err.params.errors, {
           messages,
@@ -153,6 +173,7 @@ export const resolveErrorMessages = (
           msg,
           err.params,
           attr,
+          checkType,
         );
       }
     }

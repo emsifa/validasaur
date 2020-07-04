@@ -1,4 +1,4 @@
-import { Rule, Validity } from "./types.ts";
+import { Rule, MessageFunction, Validity } from "./types.ts";
 
 export interface ValidationRules {
   [key: string]: Rule | Rule[];
@@ -19,7 +19,7 @@ export interface InputData {
 }
 
 export interface ValidationMessages {
-  [key: string]: string;
+  [key: string]: MessageFunction | string;
 }
 
 export interface ValidationUtils {
