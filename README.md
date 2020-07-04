@@ -154,30 +154,36 @@ Result:
 #### Custom Error Message
 
 ```ts
-import { validate, flattenMessages } from "https://deno.land/x/validasaur/src/mod.ts";
+import { validate, InvalidParams } from "https://deno.land/x/validasaur/src/mod.ts";
 import {
   required,
   isNumber,
+  isIn,
   isString,
-  validateArray,
-  validateObject
 } from "https://deno.land/x/validasaur/src/rules.ts";
 
 const inputs = {
   name: "",
-  age: '12',
+  age: "12",
+  sex: "unknown",
 };
 
 const [passes, errors] = await validate(inputs, {
   name: required,
   age: [required, isNumber],
+  sex: [required, isString, isIn(["male", "female"])]
 }, {
   messages: {
     "name": "Nama tidak boleh kosong",
     "age.required": "Usia tidak boleh kosong",
     "age.isNumber": "Usia harus berupa angka",
+    // Using function
+    "isIn": (params: InvalidParams): string => {
+      const allowedValues = params.allowedValues.join("/");
+      return `${params.attr} field doesn't allow '${params.value}', it only allows ${allowedValues}`;
+    },
     // Use this if you want same message for any rule fail
-    // "age": "Usia tidak valid"
+    // "age": "Usia tidak valid",
   },
 });
 

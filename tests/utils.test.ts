@@ -5,6 +5,7 @@ import {
   ValidationErrors,
   RawValidationResult,
   InputData,
+  InvalidParams,
 } from "../src/interfaces.ts";
 
 const sampleErrorMessages = (): ValidationErrors => ({
@@ -452,5 +453,33 @@ Deno.test("utils.getValue", () => {
     utils.getValue(data, "arrObj.2"),
     undefined,
     "arrObj.2 should be undefined",
+  );
+});
+
+Deno.test("utils.getCheckType", () => {
+  assertEquals(utils.getCheckType("foo"), "");
+  assertEquals(utils.getCheckType("foo:bar"), "bar");
+  assertEquals(utils.getCheckType("foo:barBaz"), "barBaz");
+  assertEquals(utils.getCheckType("foo:barBaz:qux"), "barBaz:qux");
+});
+
+Deno.test("utils.resolveErrorMessage() with MessageFunction", () => {
+  const message = (params: InvalidParams, checkType?: string): string => {
+    switch (checkType) {
+      case "numberCheck":
+        return `Value must be a number, ${typeof params.value} given`;
+      default:
+        return `${params.attr} can't be ${params.value}, it must be between ${params.min}-${params.max}`;
+    }
+  };
+
+  assertEquals(
+    utils.resolveErrorMessage(message, { value: 10, min: 11, max: 15 }, "x"),
+    "x can't be 10, it must be between 11-15",
+  );
+
+  assertEquals(
+    utils.resolveErrorMessage(message, { value: "10" }, "x", "numberCheck"),
+    "Value must be a number, string given",
   );
 });
