@@ -17,10 +17,10 @@ Deno.test("rules.fileExists('')('foobar.md') should be invalid", async () => {
   );
 });
 
-Deno.test("rules.fileExists('src')('mod.ts') should be invalid", async () => {
+Deno.test("rules.fileExists('src')('rules.ts') should be invalid", async () => {
   assertInvalid(
-    await fileExists("src")("mod.ts", fakeUtils),
-    invalid("fileExists:pathCheck", { value: "mod.ts", pathPrefix: "src" }),
+    await fileExists("src")("rules.ts", fakeUtils),
+    invalid("fileExists:pathCheck", { value: "rules.ts", pathPrefix: "src" }),
   );
 });
 
@@ -28,6 +28,6 @@ Deno.test("rules.fileExists('')('README.md') should be valid", async () => {
   assertValid(await fileExists("")("README.md", fakeUtils));
 });
 
-Deno.test("rules.fileExists('src/')('mod.ts') should be valid", async () => {
-  assertValid(await fileExists("src/")("mod.ts", fakeUtils));
+Deno.test("rules.fileExists('src/')('rules.ts') should be valid", async () => {
+  assertValid(await fileExists("src/")("rules.ts", fakeUtils));
 });
