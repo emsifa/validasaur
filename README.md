@@ -54,8 +54,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
 Write your `example.ts` like this:
 
 ```ts
-import { validate } from "https://deno.land/x/validasaur/src/mod.ts";
-import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
+import { validate, required, isNumber } from "https://deno.land/x/validasaur/mod.ts";
 
 const inputs = {
   name: "",
@@ -69,8 +68,6 @@ const [ passes, errors ] = await validate(inputs, {
 
 console.log({ passes, errors });
 ```
-
-> Actually rules are also available to import from `mod.ts`, it is up to you to import from `mod.ts` or `rules.ts`.
 
 Run code above with:
 
@@ -102,8 +99,13 @@ you can use `flattenMessages` or `firstMessages` to format error messages.
 For example:
 
 ```ts
-import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
-import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
+import {
+  validate,
+  flattenMessages,
+  firstMessages,
+  required,
+  isNumber
+} from "https://deno.land/x/validasaur/mod.ts";
 
 const inputs = {
   name: "",
@@ -154,13 +156,14 @@ Result:
 #### Custom Error Message
 
 ```ts
-import { validate, InvalidParams } from "https://deno.land/x/validasaur/src/mod.ts";
 import {
+  validate,
+  InvalidParams,
   required,
   isNumber,
   isIn,
   isString,
-} from "https://deno.land/x/validasaur/src/rules.ts";
+} from "https://deno.land/x/validasaur/mod.ts";
 
 const inputs = {
   name: "",
@@ -209,14 +212,15 @@ Result:
 #### Validating Array and Object
 
 ```ts
-import { validate, flattenMessages } from "https://deno.land/x/validasaur/src/mod.ts";
 import {
+  validate,
+  flattenMessages,
   required,
   isNumber,
   isString,
   validateArray,
   validateObject
-} from "https://deno.land/x/validasaur/src/rules.ts";
+} from "https://deno.land/x/validasaur/mod.ts";
 
 const inputs = {
   name: "",
@@ -274,7 +278,7 @@ In this example we will make an `isOdd` rule validation that check odd number.
 First, let's make `is_odd.ts` like this:
 
 ```ts
-import { invalid, Validity } from "https://deno.land/x/validasaur/src/mod.ts";
+import { invalid, Validity } from "https://deno.land/x/validasaur/mod.ts";
 
 export function isOdd(value: any): Validity {
   if (typeof value !== "number") {
@@ -291,8 +295,14 @@ export function isOdd(value: any): Validity {
 Now, we can use it like this:
 
 ```ts
-import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
-import { required, isNumber } from "https://deno.land/x/validasaur/src/rules.ts";
+import {
+  validate,
+  flattenMessages,
+  firstMessages,
+  required,
+  isNumber
+} from "https://deno.land/x/validasaur/mod.ts";
+
 import { isOdd } from "./is_odd.ts";
 
 const inputs = {
@@ -315,7 +325,7 @@ First, let's make our `unique.ts`:
 
 ```ts
 import db from "./your_db_service.ts";
-import { invalid, Validity, Rule } from "https://deno.land/x/validasaur/src/mod.ts";
+import { invalid, Validity, Rule } from "https://deno.land/x/validasaur/mod.ts";
 
 export function unique(table: string, column: string): Rule {
   return async function uniqueRule(value: any): Promise<Validity> {
@@ -335,8 +345,14 @@ export function unique(table: string, column: string): Rule {
 Now we can use it like this:
 
 ```ts
-import { validate, flattenMessages, firstMessages } from "https://deno.land/x/validasaur/src/mod.ts";
-import { required, isEmail } from "https://deno.land/x/validasaur/src/rules.ts";
+import {
+  validate,
+  flattenMessages,
+  firstMessages,
+  required,
+  isEmail
+} from "https://deno.land/x/validasaur/mod.ts";
+
 import { unique } from "./unique.ts";
 
 const inputs = {
