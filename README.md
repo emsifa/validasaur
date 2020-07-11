@@ -4,6 +4,7 @@
 [![CI](https://github.com/emsifa/validasaur/workflows/ci/badge.svg)](https://github.com/emsifa/validasaur/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/emsifa/validasaur/blob/master/LICENSE)
 [![tag](https://img.shields.io/badge/deno->=1.0.0-green.svg)](https://github.com/denoland/deno)
+[![nest badge](https://nest.land/badge.svg)](https://nest.land/package/validasaur)
 
 Validasaur is Deno validation library slightly inspired by Laravel Validation.
 

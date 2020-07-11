@@ -1,0 +1,11 @@
+{
+  "name": "validasaur",
+  "description": "Deno validation library that slightly inspired by Laravel Validation",
+  "version": "0.9.1",
+  "stable": false,
+  "repository": "https://github.com/emsifa/validasaur",
+  "files": [
+    "./**/*",
+    "./README.md"
+  ]
+}
