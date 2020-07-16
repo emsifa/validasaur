@@ -15,12 +15,12 @@ Deno.test("rules.isUrl(0.1) should be invalid", () => {
 });
 
 Deno.test("rules.isUrl() with invalid urls should be invalid", () => {
-  const url = "test"
+  const url = "test";
   assertInvalid(isUrl(url), invalid("isUrl", { value: url }));
 });
 
 Deno.test("rules.isUrl() with invalid urls should be invalid", () => {
-  const url = "http:/test.com"
+  const url = "http:/test.com";
   assertInvalid(isUrl(url), invalid("isUrl", { value: url }));
 });
 
