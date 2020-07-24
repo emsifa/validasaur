@@ -29,6 +29,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`isFloat`](#isfloat)
     - [`isIn(allowedValues: PrimitiveTypes[])`](#isinallowedvalues-primitivetypes)
     - [`isInt`](#isint)
+    - [`isIPv4`](#isipv4)
     - [`isNumber`](#isnumber)
     - [`isNumeric`](#isnumeric)
     - [`isString`](#isstring)
@@ -474,6 +475,13 @@ Value under this field must be an integer.
 * Invalid values: `0.5`, `"123"`, etc.
 * Valid values: `0`, `123`, etc.
 
+#### `isIPv4`
+
+Value under this field must be valid IPv4.
+
+* Invalid values: `"foo"`, `"a.b.c.d"`, `"1.2.3.256"`, `"1.02.3.4"`, etc.
+* Valid values: `"0.0.0.0"`, `"1.2.3.4"`, `"255.255.255.255"`, etc.
+
 #### `isNumber`
 
 Value under this field must be a float or an integer.
@@ -750,7 +758,6 @@ const [ passes, errors ] = await validate({
 ## TODOS
 
 * [ ] `isUrl` rule.
-* [ ] `isIpAddress` rule.
-* [ ] `isIpv4` rule.
-* [ ] `isIpv6` rule.
+* [ ] `isIP` rule.
+* [ ] `isIPv6` rule.
 * [ ] add more examples to documentation.
