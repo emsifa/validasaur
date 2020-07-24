@@ -1,0 +1,12 @@
+import { invalid } from "../utils.ts";
+import { Validity } from "../types.ts";
+
+export function isIPv4(value: any): Validity {
+  if (typeof value !== "string") {
+    return invalid("isIPv4", { value });
+  }
+
+  if (!value.match(/^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$/)) {
+    return invalid("isIPv4", { value });
+  }
+}
