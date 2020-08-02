@@ -42,7 +42,6 @@ Deno.test("rules.either with valid values", async () => {
   }
 });
 
-
 Deno.test("rules.either with invalid values and custom errorCode", async () => {
   const invalidValues = [
     [],
