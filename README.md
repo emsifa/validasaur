@@ -20,6 +20,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [Make More Advanced Rule Validation](#make-more-advanced-rule-validation)
 - [Available Rules](#available-rules)
     - [`required`](#required)
+    - [`either(ruleSets: (Rule|Rule[])[], errorCode: string = 'either')`](#)
     - [`endsWith(str: string)`](#endswithstr-string)
     - [`fileExists(pathPrefix: string)`](#fileexistspathprefix-string)
     - [`isArray`](#isarray)
@@ -379,6 +380,40 @@ Value under this field should not be `null`, `undefined`, or an empty string (`"
 * Valid values: `"0"`, `[]`, `{}`, `0`, etc.
 
 > When you don't put `required` on a field, that field will be considered as optional field. Which means when it's value is `undefined`, `null`, or `""`, that field will be considered as valid without checking for next rules.
+
+#### `either(ruleSets: (Rule|Rule[])[], errorCode: string = 'either')`
+
+Use this as an `OR` operator.
+
+For example you may want to accept `ipv4` or `ipv6`, you can use `either` rule like below:
+
+Example:
+
+```ts
+const [ passes, errors ] = await validate({
+  value1: "1.2.3.4",
+  value2: "::1",
+  value3: "not an IP address"
+}, {
+  value1: [required, either([isIPv4, isIPv6])], // valid
+  value2: [required, either([isIPv4, isIPv6])], // valid
+  value3: [required, either([isIPv4, isIPv6])], // invalid
+})
+```
+
+You may want define `errorCode` to use appropriate custom message:
+
+```ts
+const [ passes, errors ] = await validate({
+  value: "foobarbaz"
+}, {
+  value: [required, either([isIPv4, isIPv6], "ipAddress")],
+}, {
+  messages: {
+    "ipAddress": ":attr is not valid IP address"
+  }
+})
+```
 
 #### `endsWith(str: string)`
 
