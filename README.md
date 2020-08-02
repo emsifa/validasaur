@@ -47,7 +47,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`requiredUnless(field: string, fieldValue: any)`](#requiredunlessfield-string-fieldvalue-any)
     - [`requiredWhen(callback: (value: any, utils: ValidationUtils) => boolean|Promise<boolean>)`](#requiredwhencallback-value-any-utils-validationutils--booleanpromiseboolean)
     - [`startsWith(str: string)`](#startswithstr-string)
-- [TODOS](#todos)
+- [Contributing](#contributing)
 
 ## Examples
 
@@ -755,9 +755,7 @@ const [ passes, errors ] = await validate({
 })
 ```
 
-## TODOS
+# Contributing
 
-* [ ] `isUrl` rule.
-* [ ] `isIP` rule.
-* [ ] `isIPv6` rule.
-* [ ] add more examples to documentation.
+All contributions are welcome, make sure to read the [contribution guideline](./.github/CONTRIBUTING.md).
+
