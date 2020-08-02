@@ -30,6 +30,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`isIn(allowedValues: PrimitiveTypes[])`](#isinallowedvalues-primitivetypes)
     - [`isInt`](#isint)
     - [`isIPv4`](#isipv4)
+    - [`isIPv6`](#isipv6)
     - [`isNumber`](#isnumber)
     - [`isNumeric`](#isnumeric)
     - [`isString`](#isstring)
