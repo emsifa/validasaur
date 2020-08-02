@@ -24,7 +24,7 @@ jobs:
         env:
           NEST_KEY: ${{ secrets.NEST_KEY }}
         run: |
-          eggs link --key $NEST_KEY
+          eggs link $NEST_KEY
       - name: Publish update
         run: |
           eggs publish
