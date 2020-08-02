@@ -6,6 +6,7 @@ export * from "./rules/is_float.ts";
 export * from "./rules/is_in.ts";
 export * from "./rules/is_int.ts";
 export * from "./rules/is_ipv4.ts";
+export * from "./rules/is_ipv6.ts";
 export * from "./rules/is_number.ts";
 export * from "./rules/is_numeric.ts";
 export * from "./rules/is_date.ts";
