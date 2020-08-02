@@ -20,7 +20,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [Make More Advanced Rule Validation](#make-more-advanced-rule-validation)
 - [Available Rules](#available-rules)
     - [`required`](#required)
-    - [`either(ruleSets: (Rule|Rule[])[], errorCode: string = 'either')`](#)
+    - [`either(ruleSets: (Rule|Rule[])[], errorCode: string = 'either')`](##eitherrulesets-rulerule-errorcode-string--either)
     - [`endsWith(str: string)`](#endswithstr-string)
     - [`fileExists(pathPrefix: string)`](#fileexistspathprefix-string)
     - [`isArray`](#isarray)
