@@ -482,6 +482,13 @@ Value under this field must be valid IPv4.
 * Invalid values: `"foo"`, `"a.b.c.d"`, `"1.2.3.256"`, `"1.02.3.4"`, etc.
 * Valid values: `"0.0.0.0"`, `"1.2.3.4"`, `"255.255.255.255"`, etc.
 
+#### `isIPv6`
+
+Value under this field must be valid IPv6.
+
+* Invalid values: `"2001:af40:::"`, `"2001:af40:::1234"`, `"2001::af40::1234"`, `"1080:0:0:0:8:800:200C:417G"`, etc.
+* Valid values: `"FEDC:BA98:7654:3210:FEDC:BA98:7654:3210"`, `"::1:2:3:4:5:6:7"`, `"::1"`, `"::"`, etc.
+
 #### `isNumber`
 
 Value under this field must be a float or an integer.
