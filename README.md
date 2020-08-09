@@ -22,7 +22,6 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`required`](#required)
     - [`either(ruleSets: (Rule|Rule[])[], errorCode: string = 'either')`](##eitherrulesets-rulerule-errorcode-string--either)
     - [`endsWith(str: string)`](#endswithstr-string)
-    - [`fileExists(pathPrefix: string)`](#fileexistspathprefix-string)
     - [`isArray`](#isarray)
     - [`isBool`](#isbool)
     - [`isDate`](#isdate)
@@ -430,24 +429,6 @@ const [ passes, errors ] = await validate({
   value1: endsWith("bar"), // invalid
   value2: endsWith("bar"), // invalid
   value3: endsWith("bar"), // valid
-})
-```
-
-#### `fileExists(pathPrefix: string)`
-
-Value under this field must be existed file.
-
-For example you have file `/var/www/media/image.jpg` in your file system:
-
-```ts
-const [ passes, errors ] = await validate({
-  file1: "image.jpg",
-  file2: "image.jpg",
-  file3: "not-image.txt"
-}, {
-  file1: fileExists("/var/www/media"), // << this will be fail because it check "/var/www/mediaimage.jpg"
-  file2: fileExists("/var/www/media/"), // << this will be pass
-  file3: fileExists("/var/www/media/"), // << this will be fail because it check "/var/www/media/not-image.txt" that is not exists
 })
 ```
 

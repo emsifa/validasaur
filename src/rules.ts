@@ -1,6 +1,5 @@
 export * from "./rules/either.ts";
 export * from "./rules/ends_with.ts";
-export * from "./rules/file_exists.ts";
 export * from "./rules/is_array.ts";
 export * from "./rules/is_bool.ts";
 export * from "./rules/is_float.ts";
