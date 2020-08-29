@@ -1,3 +1,4 @@
+export * from "./rules/date_after_or_equal.ts";
 export * from "./rules/date_after.ts";
 export * from "./rules/date_before_or_equal.ts";
 export * from "./rules/date_before.ts";
