@@ -483,3 +483,9 @@ Deno.test("utils.resolveErrorMessage() with MessageFunction", () => {
     "Value must be a number, string given",
   );
 });
+
+Deno.test("utils.clearTimes()", () => {
+  const input = new Date("2020-12-25 20:30:40:50");
+  const expect = new Date("2020-12-25 00:00:00:00");
+  assertEquals(utils.clearTimes(input), expect);
+});
