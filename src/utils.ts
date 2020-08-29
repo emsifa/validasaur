@@ -1,4 +1,4 @@
-import { Rule, MessageFunction } from "./types.ts";
+import { Rule, MessageFunction, Validity } from "./types.ts";
 import {
   InvalidParams,
   InvalidPayload,
@@ -216,4 +216,40 @@ export const makeValidationUtils = (input: InputData): ValidationUtils => {
     getValue: (key: string): any => getValue(input, key),
     hasValue: (key: string): boolean => hasValue(input, key),
   };
+};
+
+export const clearTimes = (date: Date): Date => {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    0,
+    0,
+    0,
+    0,
+  );
+};
+
+export const dateChecks = (
+  value: any,
+  ruleName: string,
+  customParams?: InvalidParams,
+  fnValidator?: (date: Date) => boolean,
+): Validity => {
+  if (typeof value !== "string" && value instanceof Date === false) {
+    return invalid(`${ruleName}:typeCheck`, { ...customParams, value });
+  }
+
+  if (typeof value === "string" && value.length < 10) {
+    return invalid(`${ruleName}:lengthCheck`, { ...customParams, value });
+  }
+
+  const date = new Date(value);
+  if (isNaN(date.getTime())) {
+    return invalid(`${ruleName}:dateCheck`, { ...customParams, value });
+  }
+
+  if (fnValidator && fnValidator(date) === false) {
+    return invalid(`${ruleName}`, { ...customParams, value });
+  }
 };

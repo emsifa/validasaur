@@ -1,3 +1,4 @@
+export * from "./rules/date_before.ts";
 export * from "./rules/either.ts";
 export * from "./rules/ends_with.ts";
 export * from "./rules/is_array.ts";
