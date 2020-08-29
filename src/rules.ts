@@ -2,6 +2,7 @@ export * from "./rules/date_after_or_equal.ts";
 export * from "./rules/date_after.ts";
 export * from "./rules/date_before_or_equal.ts";
 export * from "./rules/date_before.ts";
+export * from "./rules/date_between.ts";
 export * from "./rules/either.ts";
 export * from "./rules/ends_with.ts";
 export * from "./rules/is_array.ts";
