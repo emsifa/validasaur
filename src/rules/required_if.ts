@@ -1,6 +1,6 @@
 import { Validity, Rule } from "../types.ts";
 import { required } from "./required.ts";
-import { optionallyValid } from '../utils.ts';
+import { optionallyValid } from "../utils.ts";
 
 export function requiredIf(field: string, fieldValue: any): Rule {
   return function requiredIfRule(value: any, { getValue }): Validity {

@@ -21,7 +21,9 @@ const getValue = (input: InputData, key: string): any => {
   return input[key];
 };
 
-const optionallyRequired = new Set(['requiredWhenRule', 'requiredIfRule', 'requiredUnlessRule']);
+const optionallyRequired = new Set(
+  ["requiredWhenRule", "requiredIfRule", "requiredUnlessRule"],
+);
 
 export const validateValue = async (
   value: any,
@@ -30,11 +32,13 @@ export const validateValue = async (
 ): Promise<InvalidPayload[]> => {
   const results = [];
   if (isOptionalValue(value) && isOptional(rules)) {
-    const optionallyRequiredRules = rules.filter(r => optionallyRequired.has(r.name))
+    const optionallyRequiredRules = rules.filter((r) =>
+      optionallyRequired.has(r.name)
+    );
     if (optionallyRequiredRules.length === 0) {
       return [];
     }
-    for (let rule of rules.filter(r => optionallyRequired.has(r.name))) {
+    for (let rule of rules.filter((r) => optionallyRequired.has(r.name))) {
       let res = rule(value, utils);
       if (res instanceof Promise) {
         res = await res;
@@ -48,9 +52,8 @@ export const validateValue = async (
           return results;
         }
       }
-      
     }
-    rules = rules.filter(r => !optionallyRequired.has(r.name))
+    rules = rules.filter((r) => !optionallyRequired.has(r.name));
   }
 
   if (typeof value === "object" && value === null && isNullable(rules)) {

@@ -25,9 +25,9 @@ export function invalid(
 
 export function optionallyValid(
   noContext: boolean,
-  rule: string = '',
+  rule: string = "",
   params: InvalidParams = {},
-  implicit: boolean = false
+  implicit: boolean = false,
 ): OptionalValidity {
   return { noContext, rule, params, implicit };
 }
