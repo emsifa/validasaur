@@ -14,6 +14,10 @@ export interface InvalidPayload {
   implicit: boolean;
 }
 
+export interface OptionalValidity extends InvalidPayload {
+  noContext: boolean
+}
+
 export interface InputData {
   [key: string]: any;
 }

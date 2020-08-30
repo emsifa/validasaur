@@ -10,6 +10,7 @@ import {
   ValidationMessages,
   InputData,
   ValidationUtils,
+  OptionalValidity,
 } from "./interfaces.ts";
 import { required } from "./rules/required.ts";
 import { nullable } from "./rules/nullable.ts";
@@ -20,6 +21,15 @@ export function invalid(
   implicit = false,
 ): InvalidPayload {
   return { rule, params, implicit };
+}
+
+export function optionallyValid(
+  noContext: boolean,
+  rule: string = '',
+  params: InvalidParams = {},
+  implicit: boolean = false
+): OptionalValidity {
+  return { noContext, rule, params, implicit };
 }
 
 export function isNullable(rules: Rule[]): boolean {
