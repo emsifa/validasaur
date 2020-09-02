@@ -6,6 +6,7 @@ import {
   InputData,
   InvalidPayload,
   ValidationUtils,
+  OptionalValidity,
 } from "./interfaces.ts";
 import {
   isOptional,
@@ -20,27 +21,52 @@ const getValue = (input: InputData, key: string): any => {
   return input[key];
 };
 
+const optionallyRequired = new Set(
+  ["requiredWhenRule", "requiredIfRule", "requiredUnlessRule"],
+);
+
 export const validateValue = async (
   value: any,
   rules: Rule[],
   utils: ValidationUtils,
 ): Promise<InvalidPayload[]> => {
+  const results = [];
   if (isOptionalValue(value) && isOptional(rules)) {
-    return [];
+    const optionallyRequiredRules = rules.filter((r) =>
+      optionallyRequired.has(r.name)
+    );
+    if (optionallyRequiredRules.length === 0) {
+      return [];
+    }
+    for (let rule of rules.filter((r) => optionallyRequired.has(r.name))) {
+      let res = rule(value, utils);
+      if (res instanceof Promise) {
+        res = await res;
+      }
+      if (res !== undefined && (res as OptionalValidity).noContext) {
+        return [];
+      }
+      if (res !== undefined) {
+        results.push(res);
+        if (res.implicit) {
+          return results;
+        }
+      }
+    }
+    rules = rules.filter((r) => !optionallyRequired.has(r.name));
   }
 
   if (typeof value === "object" && value === null && isNullable(rules)) {
     return [];
   }
 
-  const results = [];
   for (let rule of rules) {
     let res = rule(value, utils);
     if (res instanceof Promise) {
       res = await res;
     }
 
-    if (res !== undefined) {
+    if (res !== undefined && !(res as OptionalValidity).noContext) {
       results.push(res);
       if (res.implicit === true) {
         break;

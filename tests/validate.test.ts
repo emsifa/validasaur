@@ -8,6 +8,9 @@ import {
   validateArray,
   validateObject,
   nullable,
+  requiredIf,
+  requiredWhen,
+  requiredUnless,
 } from "../src/rules.ts";
 import {
   InputData,
@@ -261,5 +264,65 @@ Deno.test("validate() advanced example should return as expected", async () => {
   };
 
   // Deno.writeTextFileSync("_errors.json", JSON.stringify(errors, null, 4));
+  assertEquals(errors, expected);
+});
+
+Deno.test("validate() with conditionally required fields should return expected results", async () => {
+  const rules = {
+    test1_1: [requiredIf("dep1", undefined), isString],
+    test1_2: [requiredIf("dep1", undefined), isString],
+    test1_3: [requiredIf("dep1", undefined), isString],
+    test1_4: [requiredIf("dep1", "not-null"), isString],
+    test1_5: [requiredIf("dep1", "not-null"), isString],
+    test2_1: [requiredUnless("dep2", 1), isString],
+    test2_2: [requiredUnless("dep2", 1), isString],
+    test2_3: [requiredUnless("dep2", 1), isString],
+    test2_4: [requiredUnless("dep2", 2), isString],
+    test2_5: [requiredUnless("dep2", 2), isString],
+    test3_1: [requiredWhen(() => true), isString],
+    test3_2: [requiredWhen(() => true), isString],
+    test3_3: [requiredWhen(() => true), isString],
+    test3_4: [requiredWhen(() => false), isString],
+    test3_5: [requiredWhen(() => false), isString],
+  };
+  const input = {
+    dep1: undefined,
+    test1_1: undefined,
+    test1_2: 1,
+    test1_3: "t3",
+    test1_4: 3,
+    test1_5: undefined,
+    dep2: 2,
+    test2_1: undefined,
+    test2_2: 1,
+    test2_3: "t3",
+    test2_4: 3,
+    test2_5: undefined,
+    test3_1: undefined,
+    test3_2: 1,
+    test3_3: "t3",
+    test3_4: 3,
+    test3_5: undefined,
+  };
+
+  const messages = {
+    "default": ":value is invalid",
+  };
+
+  const expected = {
+    test1_1: { "required": "undefined is invalid" },
+    test1_2: { isString: "1 is invalid" },
+    test1_4: { isString: "3 is invalid" },
+    test2_1: { "required": "undefined is invalid" },
+    test2_2: { isString: "1 is invalid" },
+    test2_4: { isString: "3 is invalid" },
+    test3_1: { "required": "undefined is invalid" },
+    test3_2: { isString: "1 is invalid" },
+    test3_4: { isString: "3 is invalid" },
+  };
+
+  const [passes, errors] = await validate(input, rules, { messages });
+  assertEquals(passes, false);
+
   assertEquals(errors, expected);
 });
