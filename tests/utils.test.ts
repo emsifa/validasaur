@@ -58,12 +58,12 @@ Deno.test("utils.isNullable()", () => {
   assertEquals(
     utils.isNullable([required, nullable, isNumber, isInt, isIn([1, 2, 3])]),
     true,
-    `isNullable should be true when there is nullable rule`
+    `isNullable should be true when there is nullable rule`,
   );
   assertEquals(
     utils.isNullable([required, isNumber, isInt, isIn([1, 2, 3])]),
     false,
-    `isNullable should be false when there is no nullable rule`
+    `isNullable should be false when there is no nullable rule`,
   );
 });
 
@@ -71,12 +71,12 @@ Deno.test("utils.isOptional()", () => {
   assertEquals(
     utils.isOptional([isNumber, isInt, isIn([1, 2, 3])]),
     true,
-    `isOptional should be true when there is no required rule`
+    `isOptional should be true when there is no required rule`,
   );
   assertEquals(
     utils.isOptional([required, isNumber, isInt, isIn([1, 2, 3])]),
     false,
-    `isOptional should be false when there is required rule`
+    `isOptional should be false when there is required rule`,
   );
 });
 
@@ -146,9 +146,9 @@ Deno.test("utils.findBestMessage()", () => {
       "x",
       "rule1:stuff1",
       "rule1",
-      defaultMsg
+      defaultMsg,
     ),
-    "x.rule1:stuff1 is invalid"
+    "x.rule1:stuff1 is invalid",
   );
   assertEquals(
     utils.findBestMessage(
@@ -156,9 +156,9 @@ Deno.test("utils.findBestMessage()", () => {
       "x",
       "rule1:stuffX",
       "rule1",
-      defaultMsg
+      defaultMsg,
     ),
-    "x.rule1 is invalid"
+    "x.rule1 is invalid",
   );
   assertEquals(
     utils.findBestMessage(
@@ -166,9 +166,9 @@ Deno.test("utils.findBestMessage()", () => {
       "x",
       "ruleX:stuffY",
       "ruleX",
-      defaultMsg
+      defaultMsg,
     ),
-    "x is invalid"
+    "x is invalid",
   );
   assertEquals(
     utils.findBestMessage(
@@ -176,9 +176,9 @@ Deno.test("utils.findBestMessage()", () => {
       "y",
       "rule1:stuff1",
       "rule1",
-      defaultMsg
+      defaultMsg,
     ),
-    "invalid rule1:stuff1"
+    "invalid rule1:stuff1",
   );
   assertEquals(
     utils.findBestMessage(
@@ -186,9 +186,9 @@ Deno.test("utils.findBestMessage()", () => {
       "y",
       "rule1:stuffX",
       "rule1",
-      defaultMsg
+      defaultMsg,
     ),
-    "invalid rule1"
+    "invalid rule1",
   );
   assertEquals(
     utils.findBestMessage(
@@ -196,9 +196,9 @@ Deno.test("utils.findBestMessage()", () => {
       "y",
       "ruleX:stuffY",
       "ruleX",
-      defaultMsg
+      defaultMsg,
     ),
-    defaultMsg
+    defaultMsg,
   );
 });
 
@@ -207,9 +207,9 @@ Deno.test("utils.resolveErrorMessage()", () => {
     utils.resolveErrorMessage(
       ":attr can't be :value, it must be between :min-:max",
       { value: 10, min: 11, max: 15 },
-      "x"
+      "x",
     ),
-    "x can't be 10, it must be between 11-15"
+    "x can't be 10, it must be between 11-15",
   );
 });
 
@@ -353,17 +353,17 @@ Deno.test("utils.isStringInt", () => {
   assertEquals(
     utils.isStringInt("12a"),
     false,
-    "'12a' shouldn't be string int"
+    "'12a' shouldn't be string int",
   );
   assertEquals(
     utils.isStringInt("a12"),
     false,
-    "'a12' shouldn't be string int"
+    "'a12' shouldn't be string int",
   );
   assertEquals(
     utils.isStringInt("12.5"),
     false,
-    "'12.5' shouldn't be string int"
+    "'12.5' shouldn't be string int",
   );
   assertEquals(utils.isStringInt("0.1"), false, "'0.1' should't be string int");
   assertEquals(utils.isStringInt(".1"), false, "'.1' shouldn't be string int");
@@ -391,68 +391,68 @@ Deno.test("utils.getValue", () => {
   assertEquals(
     utils.getValue(data, "obj"),
     { str: "bar" },
-    "data.obj should be {str: 'bar'}"
+    "data.obj should be {str: 'bar'}",
   );
   assertEquals(
     utils.getValue(data, "obj.str"),
     "bar",
-    "data.obj.str should be 'bar'"
+    "data.obj.str should be 'bar'",
   );
   assertEquals(
     utils.getValue(data, "obj.nothing"),
     undefined,
-    "data.obj.nothing should be undefined"
+    "data.obj.nothing should be undefined",
   );
   assertEquals(
     utils.getValue(data, "obj.1.x"),
     undefined,
-    "data.1.x should be undefined"
+    "data.1.x should be undefined",
   );
   assertEquals(utils.getValue(data, "num"), 12, "data.num should be 12");
   assertEquals(
     utils.getValue(data, "num.nothing"),
     undefined,
-    "data.num.nothing should be undefined"
+    "data.num.nothing should be undefined",
   );
   assertEquals(
     utils.getValue(data, "empty"),
     null,
-    "data.empty should be null"
+    "data.empty should be null",
   );
   assertEquals(
     utils.getValue(data, "empty.nothing"),
     undefined,
-    "data.empty.nothing should be undefined"
+    "data.empty.nothing should be undefined",
   );
   assertEquals(
     utils.getValue(data, "arrObj.0"),
     { str: "baz" },
-    "arrObj.0 should be {str: 'baz'}"
+    "arrObj.0 should be {str: 'baz'}",
   );
   assertEquals(
     utils.getValue(data, "arrObj.0.str"),
     "baz",
-    "arrObj.0.str should be 'baz'"
+    "arrObj.0.str should be 'baz'",
   );
   assertEquals(
     utils.getValue(data, "arrObj.1"),
     { str: "qux" },
-    "arrObj.1 should be {str: 'qux'}"
+    "arrObj.1 should be {str: 'qux'}",
   );
   assertEquals(
     utils.getValue(data, "arrObj.1.str"),
     "qux",
-    "arrObj.1.str should be 'qux'"
+    "arrObj.1.str should be 'qux'",
   );
   assertEquals(
     utils.getValue(data, "arrObj.nothing"),
     undefined,
-    "arrObj.nothing should be undefined"
+    "arrObj.nothing should be undefined",
   );
   assertEquals(
     utils.getValue(data, "arrObj.2"),
     undefined,
-    "arrObj.2 should be undefined"
+    "arrObj.2 should be undefined",
   );
 });
 
@@ -475,12 +475,12 @@ Deno.test("utils.resolveErrorMessage() with MessageFunction", () => {
 
   assertEquals(
     utils.resolveErrorMessage(message, { value: 10, min: 11, max: 15 }, "x"),
-    "x can't be 10, it must be between 11-15"
+    "x can't be 10, it must be between 11-15",
   );
 
   assertEquals(
     utils.resolveErrorMessage(message, { value: "10" }, "x", "numberCheck"),
-    "Value must be a number, string given"
+    "Value must be a number, string given",
   );
 });
 

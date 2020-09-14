@@ -88,10 +88,10 @@ Deno.test(
     const errs = await validateValue(
       null,
       [isString, isNumber, isInt],
-      fakeUtils
+      fakeUtils,
     );
     assertEquals(errs.length, 0);
-  }
+  },
 );
 
 Deno.test(
@@ -100,10 +100,10 @@ Deno.test(
     const errs = await validateValue(
       null,
       [required, nullable, isString, isNumber, isInt],
-      fakeUtils
+      fakeUtils,
     );
     assertEquals(errs.length, 0);
-  }
+  },
 );
 
 Deno.test(
@@ -112,10 +112,10 @@ Deno.test(
     const errs = await validateValue(
       null,
       [required, isString, isNumber, isInt],
-      fakeUtils
+      fakeUtils,
     );
     assertEquals(errs.length, 1);
-  }
+  },
 );
 
 Deno.test(
@@ -124,11 +124,11 @@ Deno.test(
     const errs = await validateValue(
       null,
       [required, isNumber, isInt],
-      fakeUtils
+      fakeUtils,
     );
     assertEquals(errs.length, 1);
     assertEquals(errs[0].rule, "required");
-  }
+  },
 );
 
 Deno.test(
@@ -137,12 +137,12 @@ Deno.test(
     const errs = await validateValue(
       "text",
       [isString, isNumber, isInt],
-      fakeUtils
+      fakeUtils,
     );
     assertEquals(errs.length, 2);
     assertEquals(errs[0].rule, "isNumber");
     assertEquals(errs[1].rule, "isInt");
-  }
+  },
 );
 
 Deno.test(
@@ -171,7 +171,7 @@ Deno.test(
               "3": [invalid("isInt", { value: 3.5 }, false)],
             },
           },
-          true
+          true,
         ),
       ],
       objectFailAtX: [
@@ -183,7 +183,7 @@ Deno.test(
               x: [invalid("required", { value: null }, true)],
             },
           },
-          true
+          true,
         ),
       ],
       objectFailAtY: [
@@ -195,7 +195,7 @@ Deno.test(
               y: [invalid("isNumber", { value: "12" }, false)],
             },
           },
-          true
+          true,
         ),
       ],
       nestedObjectFailAtFooBarBaz: [
@@ -240,24 +240,24 @@ Deno.test(
                               baz: [invalid("required", { value: null }, true)],
                             },
                           },
-                          true
+                          true,
                         ),
                       ],
                     },
                   },
-                  true
+                  true,
                 ),
               ],
             },
           },
-          true
+          true,
         ),
       ],
     };
 
     // Deno.writeTextFileSync("_errors.json", JSON.stringify(errors, null, 4));
     assertEquals(errors, expected);
-  }
+  },
 );
 
 Deno.test("validate() advanced example should return as expected", async () => {
@@ -381,5 +381,5 @@ Deno.test(
     assertEquals(passes, false);
 
     assertEquals(errors, expected);
-  }
+  },
 );

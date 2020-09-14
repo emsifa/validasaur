@@ -9,7 +9,7 @@ import { assertEquals, assertNotEquals } from "./deps.ts";
 export const assertInvalid = (
   result: Validity,
   payload: InvalidPayload,
-  message?: string
+  message?: string,
 ): void => {
   assertNotEquals(result, undefined, message || "Result should be invalid");
   if (result !== undefined) {
@@ -18,7 +18,7 @@ export const assertInvalid = (
     assertEquals(
       result.implicit,
       payload.implicit,
-      `Result implicity should be: ${result.implicit ? "true" : "false"}`
+      `Result implicity should be: ${result.implicit ? "true" : "false"}`,
     );
   }
 };
@@ -27,7 +27,7 @@ export const assertValid = (result: Validity, message?: string): void => {
   assertEquals(
     result === undefined || (result as OptionalValidity).noContext,
     true,
-    message || "Result should be valid"
+    message || "Result should be valid",
   );
 };
 
