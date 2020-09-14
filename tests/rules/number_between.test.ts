@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { numberBetween } from "../../src/rules/number_between.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.numberBetween(1, 5)(5.1) should be invalid", () => {
   assertInvalid(

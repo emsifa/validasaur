@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { dateBetween } from "../../src/rules/date_between.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.dateBetween() type check", () => {
   const minDate = new Date("2020-01-02");

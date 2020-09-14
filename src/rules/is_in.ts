@@ -1,5 +1,5 @@
+import type { Validity, Rule, PrimitiveTypes } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity, Rule, PrimitiveTypes } from "../types.ts";
 
 export function isIn(allowedValues: PrimitiveTypes[]): Rule {
   return function isInRule(value: any): Validity {

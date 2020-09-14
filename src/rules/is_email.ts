@@ -1,5 +1,5 @@
+import type { Validity } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity } from "../types.ts";
 
 export function isEmail(value: any): Validity {
   // https://stackoverflow.com/a/46181

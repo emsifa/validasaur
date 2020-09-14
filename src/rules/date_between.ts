@@ -1,5 +1,5 @@
+import type { Validity, Rule } from "../types.ts";
 import { clearTimes, dateChecks } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
 
 export function dateBetween(minDate: Date, maxDate: Date): Rule {
   return function dateBetweenRule(value: any): Validity {

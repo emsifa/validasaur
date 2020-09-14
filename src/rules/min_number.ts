@@ -1,5 +1,5 @@
+import type { Validity, Rule } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
 
 export function minNumber(minValue: number): Rule {
   return function minRule(value: any): Validity {

@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { notIn } from "../../src/rules/not_in.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.notIn([0, 1, 2])(0) should be invalid", () => {
   assertInvalid(

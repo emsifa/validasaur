@@ -1,6 +1,6 @@
-import { Validity, Rule } from "../types.ts";
+import type { Validity, Rule } from "../types.ts";
+import type { ValidationUtils } from "../interfaces.ts";
 import { required } from "./required.ts";
-import { ValidationUtils } from "../interfaces.ts";
 import { optionallyValid } from "../utils.ts";
 
 export function requiredWhen(

@@ -1,5 +1,5 @@
+import type { Validity, Rule } from "../types.ts";
 import { clearTimes, dateChecks } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
 
 export function dateBefore(date: Date): Rule {
   return function dateBeforeRule(value: any): Validity {

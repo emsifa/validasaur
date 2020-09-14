@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { dateAfter } from "../../src/rules/date_after.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.dateAfter() type check", () => {
   const date = new Date();

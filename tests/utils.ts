@@ -1,5 +1,5 @@
-import { Validity } from "../src/types.ts";
-import {
+import type { Validity } from "../src/types.ts";
+import type {
   InvalidPayload,
   ValidationUtils,
   OptionalValidity,

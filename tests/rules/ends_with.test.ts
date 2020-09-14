@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { endsWith } from "../../src/rules/ends_with.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.endsWith('foo')(null) should be invalid", () => {
   assertInvalid(

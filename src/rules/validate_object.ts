@@ -1,8 +1,11 @@
+import type { Validity, Rule } from "../types.ts";
+import type {
+  ValidationRules,
+  InputData,
+  ValidationUtils,
+} from "../interfaces.ts";
 import { invalid, isOptionalValue } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
-import { isNumber } from "./is_number.ts";
 import { required } from "./required.ts";
-import { ValidationRules, InputData, ValidationUtils } from "../interfaces.ts";
 import { validateData } from "../validate.ts";
 
 export function validateObject(

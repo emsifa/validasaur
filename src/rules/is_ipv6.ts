@@ -1,5 +1,5 @@
+import type { Validity } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity } from "../types.ts";
 
 export function isIPv6(value: any): Validity {
   const invalidResult = invalid("isIPv6", { value });
@@ -10,8 +10,8 @@ export function isIPv6(value: any): Validity {
 
   const segments = value.split(":");
 
-  const invalidSegments = segments.filter((s) =>
-    !s.match(/^(|[0-9a-f]{1,4})$/i)
+  const invalidSegments = segments.filter(
+    (s) => !s.match(/^(|[0-9a-f]{1,4})$/i),
   );
   if (invalidSegments.length > 0) {
     return invalidResult;

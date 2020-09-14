@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { dateBeforeOrEqual } from "../../src/rules/date_before_or_equal.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.dateBeforeOrEqual() type check", () => {
   const date = new Date();

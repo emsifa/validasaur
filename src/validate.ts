@@ -1,5 +1,5 @@
-import { ValidationResult, Rule, Validity } from "./types.ts";
-import {
+import type { ValidationResult, Rule, Validity } from "./types.ts";
+import type {
   ValidationRules,
   ValidationOptions,
   RawValidationResult,
@@ -21,9 +21,11 @@ const getValue = (input: InputData, key: string): any => {
   return input[key];
 };
 
-const optionallyRequired = new Set(
-  ["requiredWhenRule", "requiredIfRule", "requiredUnlessRule"],
-);
+const optionallyRequired = new Set([
+  "requiredWhenRule",
+  "requiredIfRule",
+  "requiredUnlessRule",
+]);
 
 export const validateValue = async (
   value: any,

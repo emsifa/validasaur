@@ -1,5 +1,5 @@
-import { Rule, MessageFunction, Validity } from "./types.ts";
-import {
+import type { Rule, MessageFunction, Validity } from "./types.ts";
+import type {
   InvalidParams,
   InvalidPayload,
   ValidationErrors,

@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { maxNumber } from "../../src/rules/max_number.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.maxNumber(5)(10) should be invalid", () => {
   assertInvalid(

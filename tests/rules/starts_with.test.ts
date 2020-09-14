@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { startsWith } from "../../src/rules/starts_with.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.startsWith('foo')(null) should be invalid", () => {
   assertInvalid(

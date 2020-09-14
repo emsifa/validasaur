@@ -1,6 +1,6 @@
+import type { Validity, Rule } from "../types.ts";
+import type { ValidationUtils } from "../interfaces.ts";
 import { invalid } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
-import { ValidationUtils } from "../interfaces.ts";
 import { validateValue } from "../validate.ts";
 
 export function either(

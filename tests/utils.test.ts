@@ -1,41 +1,41 @@
-import * as utils from "../src/utils.ts";
-import { assertEquals, assertNotEquals } from "./deps.ts";
-import { required, isNumber, isInt, isIn, nullable } from "../src/rules.ts";
-import {
+import type {
   ValidationErrors,
   RawValidationResult,
   InputData,
   InvalidParams,
 } from "../src/interfaces.ts";
+import * as utils from "../src/utils.ts";
+import { assertEquals } from "./deps.ts";
+import { required, isNumber, isInt, isIn, nullable } from "../src/rules.ts";
 
 const sampleErrorMessages = (): ValidationErrors => ({
-  "x": {
-    "rule1": "something wrong with x.rule1",
-    "rule2": "something wrong with x.rule2",
+  x: {
+    rule1: "something wrong with x.rule1",
+    rule2: "something wrong with x.rule2",
   },
-  "obj": {
-    "validateObject": {
-      "x": {
-        "rule1": "something wrong with obj.x.rule1",
-        "rule2": "something wrong with obj.x.rule2",
+  obj: {
+    validateObject: {
+      x: {
+        rule1: "something wrong with obj.x.rule1",
+        rule2: "something wrong with obj.x.rule2",
       },
     },
   },
-  "arr": {
-    "validateArray": {
+  arr: {
+    validateArray: {
       "1": {
-        "rule1": "something wrong with arr[1].rule1",
-        "rule2": "something wrong with arr[1].rule2",
+        rule1: "something wrong with arr[1].rule1",
+        rule2: "something wrong with arr[1].rule2",
       },
     },
   },
-  "arrObj": {
-    "validateArray": {
+  arrObj: {
+    validateArray: {
       "1": {
-        "validateObject": {
-          "x": {
-            "rule1": "something wrong with arrObj[1].x.rule1",
-            "rule2": "something wrong with arrObj[1].x.rule2",
+        validateObject: {
+          x: {
+            rule1: "something wrong with arrObj[1].x.rule1",
+            rule2: "something wrong with arrObj[1].x.rule2",
           },
         },
       },
@@ -94,16 +94,16 @@ Deno.test("utils.firstMessages()", () => {
   const result = utils.firstMessages(errorMessages);
 
   assertEquals(result, {
-    "x": "something wrong with x.rule1",
-    "obj": {
-      "x": "something wrong with obj.x.rule1",
+    x: "something wrong with x.rule1",
+    obj: {
+      x: "something wrong with obj.x.rule1",
     },
-    "arr": {
+    arr: {
       "1": "something wrong with arr[1].rule1",
     },
-    "arrObj": {
+    arrObj: {
       "1": {
-        "x": "something wrong with arrObj[1].x.rule1",
+        x: "something wrong with arrObj[1].x.rule1",
       },
     },
   });
@@ -116,7 +116,7 @@ Deno.test("utils.flattenMessages()", () => {
   assertEquals(result, {
     "x.rule1": "something wrong with x.rule1",
     "x.rule2": "something wrong with x.rule2",
-    "x": "something wrong with x.rule1",
+    x: "something wrong with x.rule1",
     "obj.x.rule1": "something wrong with obj.x.rule1",
     "obj.x.rule2": "something wrong with obj.x.rule2",
     "obj.x": "something wrong with obj.x.rule1",
@@ -134,9 +134,9 @@ Deno.test("utils.findBestMessage()", () => {
   const messageTemplates = {
     "x.rule1:stuff1": "x.rule1:stuff1 is invalid",
     "x.rule1": "x.rule1 is invalid",
-    "x": "x is invalid",
+    x: "x is invalid",
     "rule1:stuff1": "invalid rule1:stuff1",
-    "rule1": "invalid rule1",
+    rule1: "invalid rule1",
   };
   const defaultMsg = "default message";
 
@@ -307,8 +307,8 @@ Deno.test("utils.resolveErrorMessages()", () => {
 
   const result = utils.resolveErrorMessages(sampleRawErrors, {
     messages: {
-      "rule1": "invalid rule1",
-      "rule2": "invalid rule2",
+      rule1: "invalid rule1",
+      rule2: "invalid rule2",
     },
   });
 

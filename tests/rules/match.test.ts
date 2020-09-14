@@ -1,7 +1,7 @@
+import type { Validity } from "../../src/types.ts";
 import { match } from "../../src/rules/match.ts";
 import { invalid } from "../../src/utils.ts";
 import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
-import { Validity } from "../../src/types.ts";
 
 Deno.test("rules.match(/^[a-z0-9]{3}$/)(3) should be invalid", () => {
   assertInvalid(
