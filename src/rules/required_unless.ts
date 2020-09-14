@@ -1,4 +1,4 @@
-import { Validity, Rule } from "../types.ts";
+import type { Validity, Rule } from "../types.ts";
 import { required } from "./required.ts";
 import { optionallyValid } from "../utils.ts";
 

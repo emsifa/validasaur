@@ -1,10 +1,7 @@
+import type { Validity, Rule } from "../types.ts";
+import type { RawValidationResult, ValidationUtils } from "../interfaces.ts";
 import { invalid, isOptionalValue } from "../utils.ts";
-import { Validity, Rule } from "../types.ts";
 import { required } from "./required.ts";
-import {
-  RawValidationResult,
-  ValidationUtils,
-} from "../interfaces.ts";
 import { validateValue } from "../validate.ts";
 
 export interface ValidateArrayOptions {
@@ -17,13 +14,13 @@ export function validateArray(
   rules: Rule[],
   { minLength, maxLength }: ValidateArrayOptions = {
     minLength: 0,
-  },
+  }
 ): Rule[] {
   return [
     ...(isRequired ? [required] : []),
     async function ruleArray(
       value: any,
-      utils: ValidationUtils,
+      utils: ValidationUtils
     ): Promise<Validity> {
       if (isRequired === false && isOptionalValue(value)) {
         return;
@@ -34,17 +31,17 @@ export function validateArray(
       }
 
       if (typeof minLength === "number" && value.length < minLength) {
-        return invalid(
-          "validateArray:minLengthCheck",
-          { value, minLength: minLength },
-        );
+        return invalid("validateArray:minLengthCheck", {
+          value,
+          minLength: minLength,
+        });
       }
 
       if (typeof maxLength === "number" && value.length > maxLength) {
-        return invalid(
-          "validateArray:maxLengthCheck",
-          { value, maxLength: maxLength },
-        );
+        return invalid("validateArray:maxLengthCheck", {
+          value,
+          maxLength: maxLength,
+        });
       }
 
       const errors: RawValidationResult = {};

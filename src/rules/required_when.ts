@@ -1,17 +1,17 @@
-import { Validity, Rule } from "../types.ts";
+import type { Validity, Rule } from "../types.ts";
+import type { ValidationUtils } from "../interfaces.ts";
 import { required } from "./required.ts";
-import { ValidationUtils } from "../interfaces.ts";
 import { optionallyValid } from "../utils.ts";
 
 export function requiredWhen(
   callback: (
     fieldValue: any,
-    validationUtils: ValidationUtils,
-  ) => boolean | Promise<boolean>,
+    validationUtils: ValidationUtils
+  ) => boolean | Promise<boolean>
 ): Rule {
   return async function requiredWhenRule(
     value: any,
-    utils: ValidationUtils,
+    utils: ValidationUtils
   ): Promise<Validity> {
     const result = callback(value, utils);
     const isRequired = result instanceof Promise ? await result : result;

@@ -1,5 +1,5 @@
+import type { Validity } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity } from "../types.ts";
 import { isNumber } from "./is_number.ts";
 
 export function isInt(value: any): Validity {

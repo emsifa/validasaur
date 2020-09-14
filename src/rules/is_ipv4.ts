@@ -1,5 +1,5 @@
+import type { Validity } from "../types.ts";
 import { invalid } from "../utils.ts";
-import { Validity } from "../types.ts";
 
 export function isIPv4(value: any): Validity {
   if (typeof value !== "string") {

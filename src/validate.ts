@@ -1,5 +1,5 @@
-import { ValidationResult, Rule, Validity } from "./types.ts";
-import {
+import type { ValidationResult, Rule, Validity } from "./types.ts";
+import type {
   ValidationRules,
   ValidationOptions,
   RawValidationResult,
@@ -21,14 +21,16 @@ const getValue = (input: InputData, key: string): any => {
   return input[key];
 };
 
-const optionallyRequired = new Set(
-  ["requiredWhenRule", "requiredIfRule", "requiredUnlessRule"],
-);
+const optionallyRequired = new Set([
+  "requiredWhenRule",
+  "requiredIfRule",
+  "requiredUnlessRule",
+]);
 
 export const validateValue = async (
   value: any,
   rules: Rule[],
-  utils: ValidationUtils,
+  utils: ValidationUtils
 ): Promise<InvalidPayload[]> => {
   const results = [];
   if (isOptionalValue(value) && isOptional(rules)) {
@@ -78,7 +80,7 @@ export const validateValue = async (
 
 export const validateData = async (
   input: InputData,
-  rules: ValidationRules,
+  rules: ValidationRules
 ): Promise<RawValidationResult> => {
   const results: RawValidationResult = {};
   const utils: ValidationUtils = makeValidationUtils(input);
@@ -90,7 +92,7 @@ export const validateData = async (
     const errors: InvalidPayload[] = await validateValue(
       value,
       keyRules,
-      utils,
+      utils
     );
     if (errors.length) {
       results[key] = errors;
@@ -104,7 +106,7 @@ export const validate = async (
   rules: ValidationRules,
   options: ValidationOptions = {
     messages: defaultMessages,
-  },
+  }
 ): Promise<ValidationResult> => {
   const rawErrors = await validateData(input, rules);
   const passes = Object.keys(rawErrors).length === 0;
