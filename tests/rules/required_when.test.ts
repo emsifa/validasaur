@@ -8,9 +8,9 @@ Deno.test(
   async () => {
     assertInvalid(
       (await requiredWhen(() => true)(null, fakeUtils)) as Validity,
-      invalid("required", { value: null }, true)
+      invalid("required", { value: null }, true),
     );
-  }
+  },
 );
 
 Deno.test("rules.requiredWhen(() => false)(null) should be valid", async () => {
@@ -27,11 +27,11 @@ Deno.test(
     assertInvalid(
       (await requiredWhen((_, { getValue }) => getValue("x") == 1)(
         null,
-        utils
+        utils,
       )) as Validity,
-      invalid("required", { value: null }, true)
+      invalid("required", { value: null }, true),
     );
-  }
+  },
 );
 
 Deno.test(
@@ -44,8 +44,8 @@ Deno.test(
     assertValid(
       (await requiredWhen((_, { getValue }) => getValue("x") == 1)(
         25,
-        utils
-      )) as Validity
+        utils,
+      )) as Validity,
     );
-  }
+  },
 );

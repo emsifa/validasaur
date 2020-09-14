@@ -6,14 +6,14 @@ import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
 Deno.test("rules.numberBetween(1, 5)(5.1) should be invalid", () => {
   assertInvalid(
     numberBetween(1, 5)(5.1, fakeUtils) as Validity,
-    invalid("numberBetween", { value: 5.1, maxValue: 5, minValue: 1 })
+    invalid("numberBetween", { value: 5.1, maxValue: 5, minValue: 1 }),
   );
 });
 
 Deno.test("rules.numberBetween(1, 5)(0.9) should be invalid", () => {
   assertInvalid(
     numberBetween(1, 5)(0.9, fakeUtils) as Validity,
-    invalid("numberBetween", { value: 0.9, maxValue: 5, minValue: 1 })
+    invalid("numberBetween", { value: 0.9, maxValue: 5, minValue: 1 }),
   );
 });
 

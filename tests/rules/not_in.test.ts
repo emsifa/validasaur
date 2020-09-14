@@ -6,14 +6,14 @@ import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
 Deno.test("rules.notIn([0, 1, 2])(0) should be invalid", () => {
   assertInvalid(
     notIn([0, 1, 2])(0, fakeUtils) as Validity,
-    invalid("notIn", { value: 0, disallowedValues: [0, 1, 2] })
+    invalid("notIn", { value: 0, disallowedValues: [0, 1, 2] }),
   );
 });
 
 Deno.test("rules.notIn([0, 1, 2])(2) should be invalid", () => {
   assertInvalid(
     notIn([0, 1, 2])(2, fakeUtils) as Validity,
-    invalid("notIn", { value: 2, disallowedValues: [0, 1, 2] })
+    invalid("notIn", { value: 2, disallowedValues: [0, 1, 2] }),
   );
 });
 

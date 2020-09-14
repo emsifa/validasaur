@@ -6,12 +6,12 @@ import { optionallyValid } from "../utils.ts";
 export function requiredWhen(
   callback: (
     fieldValue: any,
-    validationUtils: ValidationUtils
-  ) => boolean | Promise<boolean>
+    validationUtils: ValidationUtils,
+  ) => boolean | Promise<boolean>,
 ): Rule {
   return async function requiredWhenRule(
     value: any,
-    utils: ValidationUtils
+    utils: ValidationUtils,
   ): Promise<Validity> {
     const result = callback(value, utils);
     const isRequired = result instanceof Promise ? await result : result;

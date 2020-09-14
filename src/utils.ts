@@ -18,7 +18,7 @@ import { nullable } from "./rules/nullable.ts";
 export function invalid(
   rule: string,
   params: InvalidParams = {},
-  implicit = false
+  implicit = false,
 ): InvalidPayload {
   return { rule, params, implicit };
 }
@@ -27,7 +27,7 @@ export function optionallyValid(
   noContext: boolean,
   rule: string = "",
   params: InvalidParams = {},
-  implicit: boolean = false
+  implicit: boolean = false,
 ): OptionalValidity {
   return { noContext, rule, params, implicit };
 }
@@ -67,7 +67,7 @@ export function firstMessages(messages: ValidationErrors): FirstMessages {
 
 export function flattenMessages(
   messages: ValidationErrors,
-  firstMessagesOnly: boolean = false
+  firstMessagesOnly: boolean = false,
 ): FlattenMessages {
   const flatten = (data: any, prefix: string = ""): FlattenMessages => {
     if (typeof data !== "object") {
@@ -79,7 +79,7 @@ export function flattenMessages(
       const d = data[key];
       const resKey = `${prefix ? prefix + "." : ""}${key}`.replace(
         /\.validate(Array|Object)/g,
-        ""
+        "",
       );
       if (typeof d === "object" && d !== null) {
         results = { ...results, ...flatten(d, resKey) };
@@ -102,7 +102,7 @@ export const resolveErrorMessage = (
   msg: string | MessageFunction,
   params: InvalidParams,
   attr: string,
-  checkType?: string
+  checkType?: string,
 ): string => {
   params.attr = attr;
 
@@ -129,7 +129,7 @@ export const findBestMessage = (
   key: string,
   ruleName: string,
   ruleKey: string,
-  defaultMessage: string | MessageFunction
+  defaultMessage: string | MessageFunction,
 ): string | MessageFunction => {
   return (
     messages[`${key}.${ruleName}`] ||
@@ -143,7 +143,7 @@ export const findBestMessage = (
 
 export const resolveErrorMessages = (
   rawErrors: RawValidationResult,
-  { messages, attributes }: ValidationOptions
+  { messages, attributes }: ValidationOptions,
 ): ValidationErrors => {
   const errorMessages: ValidationErrors = {};
   const defaultMessage = (messages || {})["default"] || ":attr is invalid";
@@ -177,13 +177,13 @@ export const resolveErrorMessages = (
           key,
           err.rule,
           ruleKey,
-          defaultMessage
+          defaultMessage,
         );
         errorMessages[key][ruleKey] = resolveErrorMessage(
           msg,
           err.params,
           attr,
-          checkType
+          checkType,
         );
       }
     }
@@ -210,7 +210,7 @@ export const getValue = (input: InputData, key: string): any => {
         return data[index];
       }
     },
-    { ...input }
+    { ...input },
   );
 
   return value;
@@ -236,7 +236,7 @@ export const clearTimes = (date: Date): Date => {
     0,
     0,
     0,
-    0
+    0,
   );
 };
 
@@ -244,7 +244,7 @@ export const dateChecks = (
   value: any,
   ruleName: string,
   customParams?: InvalidParams,
-  fnValidator?: (date: Date) => boolean
+  fnValidator?: (date: Date) => boolean,
 ): Validity => {
   if (typeof value !== "string" && value instanceof Date === false) {
     return invalid(`${ruleName}:typeCheck`, { ...customParams, value });

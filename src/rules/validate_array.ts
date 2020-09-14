@@ -14,13 +14,13 @@ export function validateArray(
   rules: Rule[],
   { minLength, maxLength }: ValidateArrayOptions = {
     minLength: 0,
-  }
+  },
 ): Rule[] {
   return [
     ...(isRequired ? [required] : []),
     async function ruleArray(
       value: any,
-      utils: ValidationUtils
+      utils: ValidationUtils,
     ): Promise<Validity> {
       if (isRequired === false && isOptionalValue(value)) {
         return;

@@ -13,7 +13,7 @@ export function dateBetween(minDate: Date, maxDate: Date): Rule {
         const maxDateTime = clearTimes(maxDate).getTime();
 
         return inputDateTime >= minDateTime && inputDateTime <= maxDateTime;
-      }
+      },
     );
   };
 }

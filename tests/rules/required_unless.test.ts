@@ -12,9 +12,9 @@ Deno.test(
 
     assertInvalid(
       requiredUnless("confirmed", "1")(null, utils) as Validity,
-      invalid("required", { value: null }, true)
+      invalid("required", { value: null }, true),
     );
-  }
+  },
 );
 
 Deno.test(
@@ -25,7 +25,7 @@ Deno.test(
     });
 
     assertValid(requiredUnless("confirmed", "1")(null, utils) as Validity);
-  }
+  },
 );
 
 Deno.test(
@@ -36,5 +36,5 @@ Deno.test(
     });
 
     assertValid(requiredUnless("confirmed", "1")(10, utils) as Validity);
-  }
+  },
 );

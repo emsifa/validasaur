@@ -6,7 +6,7 @@ import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
 Deno.test("rules.minNumber(5)(4) should be invalid", () => {
   assertInvalid(
     minNumber(5)(4, fakeUtils) as Validity,
-    invalid("minNumber", { value: 4, minValue: 5 })
+    invalid("minNumber", { value: 4, minValue: 5 }),
   );
 });
 

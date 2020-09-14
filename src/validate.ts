@@ -30,7 +30,7 @@ const optionallyRequired = new Set([
 export const validateValue = async (
   value: any,
   rules: Rule[],
-  utils: ValidationUtils
+  utils: ValidationUtils,
 ): Promise<InvalidPayload[]> => {
   const results = [];
   if (isOptionalValue(value) && isOptional(rules)) {
@@ -80,7 +80,7 @@ export const validateValue = async (
 
 export const validateData = async (
   input: InputData,
-  rules: ValidationRules
+  rules: ValidationRules,
 ): Promise<RawValidationResult> => {
   const results: RawValidationResult = {};
   const utils: ValidationUtils = makeValidationUtils(input);
@@ -92,7 +92,7 @@ export const validateData = async (
     const errors: InvalidPayload[] = await validateValue(
       value,
       keyRules,
-      utils
+      utils,
     );
     if (errors.length) {
       results[key] = errors;
@@ -106,7 +106,7 @@ export const validate = async (
   rules: ValidationRules,
   options: ValidationOptions = {
     messages: defaultMessages,
-  }
+  },
 ): Promise<ValidationResult> => {
   const rawErrors = await validateData(input, rules);
   const passes = Object.keys(rawErrors).length === 0;

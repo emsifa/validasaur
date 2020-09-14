@@ -11,7 +11,7 @@ Deno.test(
   () => {
     const rules = validateArray(true, [isNumber]);
     assertEquals(rules[0], required);
-  }
+  },
 );
 
 Deno.test(
@@ -19,7 +19,7 @@ Deno.test(
   () => {
     const rules = validateArray(false, [isNumber]);
     assertNotEquals(rules[0], required);
-  }
+  },
 );
 
 Deno.test(
@@ -30,7 +30,7 @@ Deno.test(
     assertEquals(typeof rule, "function");
     const result = (await rule(null, fakeUtils)) as Validity;
     assertValid(result);
-  }
+  },
 );
 
 Deno.test(
@@ -41,7 +41,7 @@ Deno.test(
     assertEquals(typeof rule, "function");
     const result = (await rule([], fakeUtils)) as Validity;
     assertValid(result);
-  }
+  },
 );
 
 Deno.test(
@@ -53,9 +53,9 @@ Deno.test(
     const result = (await rule([], fakeUtils)) as Validity;
     assertInvalid(
       result,
-      invalid("validateArray:minLengthCheck", { value: [], minLength: 1 })
+      invalid("validateArray:minLengthCheck", { value: [], minLength: 1 }),
     );
-  }
+  },
 );
 
 Deno.test(
@@ -66,7 +66,7 @@ Deno.test(
     assertEquals(typeof rule, "function");
     const result = (await rule([100], fakeUtils)) as Validity;
     assertValid(result);
-  }
+  },
 );
 
 Deno.test(
@@ -77,7 +77,7 @@ Deno.test(
     assertEquals(typeof rule, "function");
     const result = (await rule([1, 2, 3], fakeUtils)) as Validity;
     assertValid(result);
-  }
+  },
 );
 
 Deno.test(
@@ -92,7 +92,7 @@ Deno.test(
       invalid("validateArray:maxLengthCheck", {
         value: [1, 2, 3, 4],
         maxLength: 3,
-      })
+      }),
     );
-  }
+  },
 );

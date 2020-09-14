@@ -6,7 +6,7 @@ import { assertInvalid, assertValid, fakeUtils } from "../utils.ts";
 Deno.test("rules.maxNumber(5)(10) should be invalid", () => {
   assertInvalid(
     maxNumber(5)(10, fakeUtils) as Validity,
-    invalid("maxNumber", { value: 10, maxValue: 5 })
+    invalid("maxNumber", { value: 10, maxValue: 5 }),
   );
 });
 

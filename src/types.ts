@@ -11,12 +11,12 @@ export type Validity = InvalidPayload | undefined;
 
 export type Rule = (
   value: any,
-  utils: ValidationUtils
+  utils: ValidationUtils,
 ) => Validity | Promise<Validity>;
 
 export type MessageFunction = (
   params: InvalidParams,
-  checkType: string
+  checkType: string,
 ) => string;
 
 export type ValidationResult = [boolean, ValidationErrors];

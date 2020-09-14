@@ -10,13 +10,13 @@ import { validateData } from "../validate.ts";
 
 export function validateObject(
   isRequired: boolean,
-  rules: ValidationRules
+  rules: ValidationRules,
 ): Rule[] {
   return [
     ...(isRequired ? [required] : []),
     async function ruleObject(
       value: any,
-      utils: ValidationUtils
+      utils: ValidationUtils,
     ): Promise<Validity> {
       if (isRequired === true && isOptionalValue(value)) {
         return;

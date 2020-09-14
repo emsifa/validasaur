@@ -5,17 +5,17 @@ import { validateValue } from "../validate.ts";
 
 export function either(
   ruleSets: (Rule | Rule[])[],
-  errorCode: string = "either"
+  errorCode: string = "either",
 ): Rule {
   return async function eitherRule(
     value: any,
-    utils: ValidationUtils
+    utils: ValidationUtils,
   ): Promise<Validity> {
     for (const ruleSet of ruleSets) {
       const errs = await validateValue(
         value,
         ruleSet instanceof Array ? ruleSet : [ruleSet],
-        utils
+        utils,
       );
 
       if (errs.length === 0) {

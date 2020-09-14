@@ -11,7 +11,7 @@ export function isIPv6(value: any): Validity {
   const segments = value.split(":");
 
   const invalidSegments = segments.filter(
-    (s) => !s.match(/^(|[0-9a-f]{1,4})$/i)
+    (s) => !s.match(/^(|[0-9a-f]{1,4})$/i),
   );
   if (invalidSegments.length > 0) {
     return invalidResult;

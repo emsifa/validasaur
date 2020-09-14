@@ -9,7 +9,7 @@ export function dateAfterOrEqual(date: Date): Rule {
       { date },
       (input: Date): boolean => {
         return clearTimes(input).getTime() >= clearTimes(date).getTime();
-      }
+      },
     );
   };
 }
