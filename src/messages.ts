@@ -21,6 +21,7 @@ export const defaultMessages: ValidationMessages = {
   minNumber: ":attr cannot be lower than :minValue",
   notIn: ":value is not allowed",
   notNull: ":value cannot be null",
+  notNaN: ":attr cannot be NaN",
   numberBetween: ":value must be between :minValue - :maxValue",
   required: ":attr is required",
   default: ":attr is invalid",
