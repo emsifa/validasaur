@@ -42,6 +42,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`minNumber(minValue: number)`](#minnumberminvalue-number)
     - [`notIn(disallowedValues: PrimitiveTypes[])`](#notindisallowedvalues-primitivetypes)
     - [`notNull`](#notnull)
+    - [`notNaN`](#notnan)
     - [`nullable`](#nullable)
     - [`numberBetween(minValue: number, maxValue: number)`](#numberbetweenminvalue-number-maxvalue-number)
     - [`requiredIf(field: string, fieldValue: any)`](#requirediffield-string-fieldvalue-any)
@@ -462,6 +463,9 @@ Value under this field must be valid email address.
 
 #### `isFloat`
 
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
+
 Value under this field must be a float number.
 
 * Invalid values: `"0.1"`, `[]`, `0`, `1`, `123`, etc.
@@ -487,6 +491,9 @@ const [ passes, errors ] = await validate({
 
 #### `isInt`
 
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
+
 Value under this field must be an integer.
 
 * Invalid values: `0.5`, `"123"`, etc.
@@ -508,12 +515,18 @@ Value under this field must be valid IPv6.
 
 #### `isNumber`
 
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
+
 Value under this field must be a float or an integer.
 
 * Invalid values: `"1"`, `"1.5"`, etc.
 * Valid values: `1`, `1.5`, etc.
 
 #### `isNumeric`
+
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
 
 Same as `asNumber`, but it allows numeric string.
 
@@ -587,6 +600,9 @@ const [ passes, errors ] = await validate({
 
 #### `maxNumber(maxValue: number)`
 
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
+
 Value under this field should be a number that is not higher than `maxValue`.
 
 Example:
@@ -622,6 +638,9 @@ const [ passes, errors ] = await validate({
 ```
 
 #### `minNumber(minValue: number)`
+
+> **Warning**
+> This does not check for `NaN`. Please use `notNaN` as well.
 
 Value under this field should be a number that is not lower than `minValue`.
 
@@ -662,6 +681,11 @@ const [ passes, errors ] = await validate({
 #### `notNull`
 
 Value under this field must not be `null`.
+
+#### `notNaN`
+
+Value under this field must not be `NaN`.
+
 
 #### `nullable`
 
