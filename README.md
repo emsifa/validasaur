@@ -33,6 +33,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`isIPv6`](#isipv6)
     - [`isNumber`](#isnumber)
     - [`isNumeric`](#isnumeric)
+    - [`isAlphaNumeric`](#isAlphaNumeric)
     - [`isString`](#isstring)
     - [`lengthBetween(minLength: number, maxLength: number)`](#lengthbetweenminlength-number-maxlength-number)
     - [`match(regex: RegExp, trim: boolean = false)`](#matchregex-regexp-trim-boolean--false)
@@ -43,6 +44,7 @@ Validasaur is Deno validation library slightly inspired by Laravel Validation.
     - [`notIn(disallowedValues: PrimitiveTypes[])`](#notindisallowedvalues-primitivetypes)
     - [`notNull`](#notnull)
     - [`nullable`](#nullable)
+    - [`nullable`](#alphaNumareric)
     - [`numberBetween(minValue: number, maxValue: number)`](#numberbetweenminvalue-number-maxvalue-number)
     - [`requiredIf(field: string, fieldValue: any)`](#requirediffield-string-fieldvalue-any)
     - [`requiredUnless(field: string, fieldValue: any)`](#requiredunlessfield-string-fieldvalue-any)
@@ -519,6 +521,13 @@ Same as `asNumber`, but it allows numeric string.
 
 * Invalid values: `"1.0abc"`, `"x.1"`, etc.
 * Valid values: `1`, `1.5`, `"2"`, `"2.5"`, etc.
+
+#### `isAlphaNumeric`
+
+Value must contain alpha letters and numeric characters.
+
+* Invalid values: `"123"`, `"abc"`, "123&$"`, `"abc#@"`, etc.
+* Valid values: `abc1123`, `123ABC`, `"abcDEF123"`, etc.
 
 #### `isString`
 
