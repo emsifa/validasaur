@@ -17,6 +17,7 @@ export * from "./rules/is_numeric.ts";
 export * from "./rules/is_date.ts";
 export * from "./rules/is_email.ts";
 export * from "./rules/is_string.ts";
+export * from "./rules/is_alpha_numeric";
 export * from "./rules/length_between.ts";
 export * from "./rules/max_length.ts";
 export * from "./rules/max_number.ts";

@@ -12,6 +12,7 @@ export const defaultMessages: ValidationMessages = {
   isNumber: ":attr must be a number",
   isNumeric: ":attr must be numeric",
   isString: ":attr must be a string",
+  isAlphaNumeric: ":attr must contain alpha letters and numeric characters",
   lengthBetween:
     ":attr characters length must be between :minLength-:maxLength",
   match: ":attr format is incorrect",
